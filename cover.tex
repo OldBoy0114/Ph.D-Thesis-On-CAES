@@ -1,0 +1,102 @@
+\thusetup{
+  %******************************
+  % 注意：
+  %   1. 配置里面不要出现空行
+  %   2. 不需要的配置信息可以删除
+  %******************************
+  %
+  %=====
+  % 秘级
+  %=====
+  secretlevel={秘密},
+  secretyear={10},
+  %
+  %=========
+  % 中文信息
+  %=========
+  ctitle={源-网-荷先进绝热压缩空气储能灵活性建模及运行研究},
+  cdegree={工学博士},
+  cdepartment={电机工程与应用电子技术系},
+  cmajor={电气工程},
+  cauthor={李瑞},
+  csupervisor={梅生伟教授},
+  %cassosupervisor={陈文光教授}, % 副指导老师
+  %ccosupervisor={某某某教授}, % 联合指导老师
+  % 日期自动使用当前时间，若需指定按如下方式修改：
+  % cdate={超新星纪元},
+  %
+  % 博士后专有部分
+  cfirstdiscipline={计算机科学与技术},
+  cseconddiscipline={系统结构},
+  postdoctordate={2009年7月——2011年7月},
+  id={编号}, % 可以留空： id={},
+  udc={UDC}, % 可以留空
+  catalognumber={分类号}, % 可以留空
+  %
+  %=========
+  % 英文信息
+  %=========
+  etitle={Research on Flexibility Modeling and Operation of Advanced Adiabatic Compressed Air Energy Storage at Source-Grid-Load Side},
+  % 这块比较复杂，需要分情况讨论：
+  % 1. 学术型硕士
+  %    edegree：必须为Master of Arts或Master of Science （注意大小写）
+  %             “哲学、文学、历史学、法学、教育学、艺术学门类，公共管理学科
+  %              填写Master of Arts，其它填写Master of Science”
+  %    emajor：“获得一级学科授权的学科填写一级学科名称，其它填写二级学科名称”
+  % 2. 专业型硕士
+  %    edegree：“填写专业学位英文名称全称”
+  %    emajor：“工程硕士填写工程领域，其它专业学位不填写此项”
+  % 3. 学术型博士
+  %    edegree：Doctor of Philosophy（注意大小写）
+  %    emajor：“获得一级学科授权的学科填写一级学科名称，其它填写二级学科名称”
+  % 4. 专业型博士
+  %    edegree：“填写专业学位英文名称全称”
+  %    emajor：不填写此项
+  edegree={Doctor of Philosophy},
+  emajor={Electrical Engineering},
+  eauthor={Li Rui},
+  esupervisor={Professor Mei Shengwei},
+  %eassosupervisor={Chen Wenguang},
+  % 日期自动生成，若需指定按如下方式修改：
+  % edate={December, 2005}
+  %
+  % 关键词用“英文逗号”分割
+  %ckeywords={\TeX, \LaTeX, CJK, 模板, 论文},
+  %ekeywords={\TeX, \LaTeX, CJK, template, thesis}
+}
+
+% 定义中英文摘要和关键字
+\begin{cabstract}
+
+储能技术是提升新能源电力系统运行灵活性的有效方式，在电源侧、网络侧及负荷侧日益得到应用。先进绝热压缩空气储能（Advanced Adiabatic Compressed Air Energy Storage, AA-CAES）即为一种可灵活部署于源-网-荷侧的清洁储能技术，具有以能量搬移与容量备用为特征的常规灵活性、以热电联供与热电联储为核心的供能灵活性，以及以机械输入与机械输出为内涵的接口灵活性。通过挖掘这三类灵活性，本文系统地研究了网侧储能电站、荷侧能量枢纽、源侧灵活风机等AA-CAES的典型应用形式的设计、建模、运行及运营方法，以支撑新能源电力系统的灵活运行。
+
+为了刻画先进绝热压缩空气储能的宽工况运行特性，研究了内部能量转换组件（压缩机与透平）、能量转移组件（换热器）的部分负载热力学特性，以及能量存储组件（储气库与储热罐）的热力学动态特性，建立了AA-CAES的通用宽工况热力学仿真模型。首先，计及常压、滑压等典型的压缩侧与膨胀侧运行模式，以及供电与热电联供等供能模式，构建了基于热力学第一定律及第二定律的稳态热力学仿真模型；其次，基于仿真模型分析了一典型AA-CAES系统的热力学特性及供能特性，为源-网-荷侧各应用形式的建模分析与运行研究提供依据。
+
+为了挖掘能量搬移与容量备用层面的常规灵活性，系统研究了计及宽工况运行特性的AA-CAES储能电站的建模、运行及运营方法。首先，基于宽工况热力学仿真模型，提出了刻画内部压力势能与压缩热能耦合特性的宽工况热力学特性曲线簇；其次，基于热力学特性曲线，提出了AA-CAES储能电站储气—储热双SOC运行模型建模框架与方法；最后，针对风-储协同系统调度运行、日前电力市场运营策略等问题展开研究，为以储能形式应用于电力系统的AA-CAES建模、运行与运营提供参考。
+
+为了挖掘热电联供与热电联储层面的供能灵活性，系统研究了AA-CAES型能量枢纽的建模、运行及运营方法。首先，设计了基于AA-CAES的典型热电联供能量枢纽，并构建了建立了其热电联供运行模型；其次，提出了面向集中式运营环境的含AA-CAES型能量枢纽的热电综合能源系统的调度方法，建立了基于㶲理论的数量-质量联合分析模型，为解决综合能源系统热电多能流建模难题提供了思路；最后，提出了面向独立运营环境的AA-CAES型能量枢纽在热电综合能源市场的运营策略，以实现能量枢纽的经济运行与运营。
+
+为了挖掘机械输入与机械输出层面的接口灵活性，系统研究了内嵌AA-CAES的灵活风机的设计、建模、运行及运营等方法。首先，设计了内嵌AA-CAES的灵活风机，利用压缩储能模式回收高风速时叶片丢弃的风能，利用膨胀释能模式填补低风速时短缺的风能；其次，提出了实现内嵌AA-CAES宽工况高效运行的控制策略，建立了灵活可调度风机的能量模型、（双）备用模型；最后，结合含风电电力系统的调度运行与风机的市场运营等问题验证了灵活风机在增加风电可调度性、提高风电功率及电量渗透水平方面的优势。
+
+总之，本文通过分析AA-CAES内部组件的部分负载运行特性构建了宽工况稳态热力学仿真模型，从网侧储能电站、荷侧能量枢纽、源侧灵活风机三个角度较为系统地研究了典型应用形式的设计、建模及运行与运营等问题，为充分挖掘AA-CAES这一理念的常规灵活性、供能灵活性及接口灵活性对新能源电力系统的支撑作用提供了较为系统的建模与分析方法。本文工作实现了一种“事后补救”与“提前预防”相结合的电力系统灵活性支撑方案，以网侧储能电站与荷侧能量枢纽“被动”满足当前电力系统的灵活性资源需求，提升现有电力系统对新能源的接纳能力；以源侧灵活风机在不增加（未来）风电的接入对系统灵活性资源的需求同时“主动”提供灵活性资源，从而满足未来电力系统对高比例新能源的并网消纳需求。
+\end{cabstract}
+
+% 如果习惯关键字跟在摘要文字后面，可以用直接命令来设置，如下：
+ \ckeywords{先进绝热压缩空气储能, 宽工况特性, 储气与储热, 源-网-荷，灵活性建模}
+
+\begin{eabstract}
+
+Energy storage technology is one of the primary approaches to boost the operational flexibility of power systems with high-penetration renewables, and storage facilities are being gradually utilized at both the source, network, and load side of power systems. Advanced adiabatic compressed air energy storage (AA-CAES) is one of the most attractive physical energy storage fashion because of its superior flexibilities, including conventional flexibility with energy-shift and power reserve capability, production flexibility regarding multi-carrier storage and poly-generation capability, and interface flexibility with mechanical input and output structure. This paper aims to exploit such kinds of flexibility offered by AA-CAES and provides associated design, modeling, and operation methods for the applications of storage plant, energy hub, and dispatch-able wind turbine at the network, load, and source side, respectively.
+
+To explore the effects of external off-design operation requirements on the part-load behavior of internal components, such as energy conversion module (compressor and turbine), and energy transfer module (heat exchanger), and on the thermodynamic performance of energy storage module (air storage chamber and thermal storage tank), we built a steady-state thermodynamic simulation model for general-purpose realizations of AA-CAES. By exploiting possible pressure control methods, such as the normal and sliding operation for the compressor and expansion train, we built the first law and the second law of thermodynamics-based simulation model. Besides, we investigated the part-load operation performance of a typical AA-CAES system with the built thermodynamic model, which will provide the insights for the modeling of corresponding AA-CAES realizations at the source, network, and load side.
+
+To exploit the conventional energy-shift and power reserve capability, we considered the regular application of AA-CAES as an energy storage fashion in power grids and proposed the modeling and operation methods with the consideration of its part-load operation. Based on the proposed thermodynamic simulation model, we proposed a cluster of thermodynamic feature curves to depict the unique characteristics represented by the coupling and decoupling of air compression heat and air potential energy in the charging and discharging cycle. Moreover, with the thermodynamic feature curves, we proposed the dual-SOC modeling framework and associated models for AA-CAES storage facility by considering the air mass SOC and thermal energy SOC. Last, we justified the effectiveness of dual-SOC models through the operation dispatch of the wind-CAES hybrid system, and the optimal bidding strategy of AA-CAES in the electricity market, to set a reference for the application of the proposed dual-SOC modeling framework.
+
+To exploit the multi-carrier storage and poly-generation flexibility, we investigated the energy hub application of AA-CAES as a flexible load form in the integrated heat-power systems. We constructed two typical forms of AA-CAES based flexible energy hubs and provided the operation model of multi-carrier production. Moreover, we proposed the optimal dispatch model for integrated heat and power energy systems coupled with AA-CAES based energy hub in the coordinated operation setting and formulated a combined quantity and quality operation model to leverage the multi-carrier quality perspective through the exergy method. Besides, we proposed an optimal strategic bidding method to investigate the market participation behavior of a privately-owned AA-CAES energy hub in an envisioned heat and power market to exploit its multi-carrier production flexibility.
+
+To exploit the mechanical interface flexibility, we proposed a novel dispatchable wind turbine with embedded AA-CAES to reduce the uncertainty imposed by the volatile wind energy and proposed associate modeling, dispatch and operation methods. We utilized the air compression cycle to collect the curtailed wind mechanical energy when wind speed is higher than the rated speed and the air expansion cycle to re-fill the shortage of mechanical wind energy once wind speed is lower than the rated one. Moreover, we offered several methods to boost the operation efficiency of AA-CAES with fluctuate wind mechanical energy input and output, and we built the energy and double-reserve model of the proposed wind turbine. Besides, based on energy model, we performed the electricity generation capability evaluation of the dispatchable wind turbine, and proposed the operation dispatch of power systems with high penetration of wind farms and the market operation strategy of the dispatchable wind turbine, to justify its capabilities in boosting wind dispatch-ability, and wind power and electricity penetration level. 
+
+In summary, this paper builds a thermodynamic simulation model for the general-purpose realization of AA-CAES to consider its off-design operation and internal part-load feature, and exploit the potential flexibilities offered by AA-CAES in terms of an energy storage, an energy hub, and a dispatchable wind turbine at the network, load, and source side, respectively. The proposed design, modeling, and operation methods are expected to benefit the exploitation and application of the conventional energy-shift and power reserve flexibility, the external multi-carrier generation flexibility, and the mechanical interface flexibility offered by the attractive concept of AA-CAES, in power systems. Our work has realized a combination of “after-the-fact remediation” and “precaution prevention” flexibility boosting solution, which utilized the energy storage plant (network side) and the energy hub (load side) to “passively” meet the existing flexible resource requirements of the power systems and the flexible wind turbine (source-side) “actively” provides flexibility with no increment of flexibility demand for its grid-connection, and finally benefits the renewable consumption of power systems.
+\end{eabstract}
+
+\ekeywords{advanced adiabatic compressed air energy storage, part-load operation, dual-SOC, source-network-load side, flexibility modeling}
