@@ -1,0 +1,76 @@
+\chapter{储气库壁面温度求解方法}
+\label{cha:air-wall-temp-exp}
+\section{热传导方程的空间离散化}
+
+由一阶连续微分的中心差分近似法，可得
+\begin{equation}
+{\left. {\frac{{\partial {T_{rs}}}}{{\partial r}}} \right|_{{r_i}}} = \frac{{{T_{rs}}\left( {{r_i} + \Delta r} \right) - {T_{rs}}\left( {{r_i} - \Delta r} \right)}}{{2\Delta r}} + {\rm O}\left( {\Delta {r^2}} \right) = \frac{{{T_{rs,i + 1}} - {T_{rs,i - 1}}}}{{2\Delta r}} + {\rm O}\left( {\Delta {r^2}} \right)
+\end{equation}
+
+由二阶连续微分的中心差分近似法，可得
+\begin{equation}
+{\left. {\frac{{{\partial ^2}{T_{rs}}}}{{\partial {r^2}}}} \right|_{{r_i}}} = \frac{{{T_{rs}}\left( {{r_i} + \Delta r} \right) - 2{T_{rs}}\left( {{r_i}} \right) + {T_{rs}}\left( {{r_i} - \Delta r} \right)}}{{{{\left( {\Delta r} \right)}^2}}} + {\rm O}\left( {\Delta {r^2}} \right) = \frac{{{T_{rs,i + 1}} - 2{T_{rs,i}} + {T_{rs,i - 1}}}}{{{{\left( {\Delta r} \right)}^2}}} + {\rm O}\left( {\Delta {r^2}} \right)
+\end{equation}
+从而，忽略近似截断误差可得，一维热传导方程的空间离散化表示形式为
+\begin{equation}
+\label{eq:thermo-wall-T}
+{\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_i}}} = {r_{rs}}\left[ {\frac{{{T_{rs,i + 1}} - 2{T_{rs,i}} + {T_{rs,i - 1}}}}{{{{\left( {\Delta r} \right)}^2}}} + \frac{1}{{{r_i}}}\frac{{{T_{rs,i + 1}} - {T_{rs,i - 1}}}}{{2\Delta r}}} \right]
+\end{equation}
+
+\section{离散化热传导方程的求解}
+定义傅里叶数为${\hat r_{rs}} = {r_{rs}}/{\left( {\Delta r} \right)^2}$，无量纲位置参数 ${g_i} = \Delta r/2{r_i}$，对应的离散空间域为$\left[ {{r_1},{r_2}, \cdots ,{r_i}, \cdots ,{r_n}} \right]$，则热传导方程(\ref{eq:thermo-wall-T})可表示为\cite{Model-AA-CAES-10}
+\begin{equation}
+{\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_i}}} = {\hat r_{rs}}\left[ {{T_{rs,i + 1}}\left( {{g_i} + 1} \right) - 2{T_{rs,i}} + {T_{rs,i - 1}}\left( {1 - {g_i}} \right)} \right]
+\end{equation}
+
+由图~\ref{fig:cavern-wall-temp}~可知，边界点满足\cite{Cavern-wall-09,Model-AA-CAES-10}：
+\begin{subequations}
+\begin{gather}
+    {\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_1}}} = {\hat r_{rs}}\left[ {{T_{rs,2}}\left( {{g_1} + 1} \right) - 2{T_{rs,1}} + {T_{rs,0}}\left( {1 - {g_1}} \right)} \right]\\
+    {\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_n}}} = {\hat r_{rs}}\left[ {{T_{rs,n + 1}}\left( {{g_n} + 1} \right) - 2{T_{rs,n}} + {T_{rs,n - 1}}\left( {1 - {g_n}} \right)} \right]
+\end{gather}
+\end{subequations}
+其中，${T_{rs,0}}$ 与 ${T_{rs,n + 1}}$为边界条件。
+
+为便于求解分析，可将一维热传导方程的空间离散化形式表示为矩阵形式\cite{Model-AA-CAES-10}，
+\begin{equation}
+\frac{{d{{\bf{T}}_{rs}}}}{{dt}} = {\hat r_{rs}}\left[ {{\bf{M}} \cdot {{\bf{T}}_{{\bf{rs}}}} + {\bf{P}}} \right]
+\end{equation}
+其中，${{\bf{T}}_{rs}} = {\left[ {{T_{rs}}\left( {{r_1},t} \right), \cdots ,{T_{rs}}\left( {{r_n},t} \right)} \right]^T} = {\left[ {{T_{rs,1}}\left( t \right), \cdots ,{T_{rs,n}}\left( t \right)} \right]^T}$.
+
+为确定矩阵${\bf{M}}$ 和矩阵 ${\bf{P}}$ 的元素，需进一步分析空气侧洞穴壁与盐丘侧洞穴壁的边界条件。定义毕奥数（Biot-number） $B{i^ + } = \frac{{{\alpha _{a,w}}\Delta r}}{{{r_{rs}}}}$，${\alpha _{a,w}}$ 表示从空气到洞穴壁的传热系数，则有\cite{Cavern-wall-09,Model-AA-CAES-10}
+\begin{equation}
+{T_{sc,a,k}}B{i^ + } = {T_{rs,0,k}}({\frac{{B{i^ + }}}{2} + 1}) + {T_{rs,1,k}}({\frac{{B{i^ + }}}{2} - 1})
+\end{equation}
+
+从而有，
+\begin{equation}
+{T_{rs,0}} = {T_{rs,0,k}} = \frac{{{T_{sc,a,k}}}}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}} + {T_{rs,1,k}}({1 -\frac{1}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}}})
+\end{equation}
+
+由此，边界点1的边界条件可写为，
+\begin{equation}
+{\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_1}}} = {\hat r_{rs}}\left[ {{T_{rs,2}}\left( {{g_1} + 1} \right) + {T_{sc,a}}\frac{{\left( {1 - {g_1}} \right)}}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}} + {T_{rs,1}}({\left( {1 - {g_1}} \right)({1 - \frac{1}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}}) - 2})} \right]
+\end{equation}
+
+边界点$n$所需的边界温度可设为环境温度，即${T_{rs,n + 1}} = {T_{env}}$，从而可得矩阵${\bf{M}}$和矩阵${\bf{P}}$分别满足\cite{Cavern-wall-09,Model-AA-CAES-10}，
+\begin{subequations}
+\begin{gather}
+{\bf{M}} = \left[ {\begin{array}{*{20}{c}}
+{{M_{11}}}&{{g_1} + 1}&0&0& \cdots &0&0&0\\
+{1 - {g_2}}&{ - 2}&{{g_2} + 1}&0& \cdots &0&0&0\\
+0&{1 - {g_3}}&{ - 2}&{{g_3} + 1}& \cdots &0&0&0\\
+ \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots & \vdots \\
+0&0&0&0& \cdots &{ - 2}&{{g_{n - 2}} + 1}&0\\
+0&0&0&0& \cdots &{1 - {g_{n - 1}}}&{ - 2}&{{g_{n - 1}} + 1}\\
+0&0&0&0& \cdots &0&{1 - {g_n}}&{ - 2}
+\end{array}} \right]\\
+P = \left[ {\begin{array}{*{20}{c}}
+{{T_{sc,a}}\frac{{\left( {1 - {g_1}} \right)}}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}}&0& \cdots &0&{{T_{env}}\left( {1 + {g_n}} \right)}
+\end{array}} \right]
+\end{gather}
+\end{subequations}
+其中，${M_{11}} = \left( {1 - {g_1}} \right)\left( {1 - \frac{1}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}} \right) - 2$。进一步，通过求解一维热传导方程的空间离散化方程组，可获取洞穴壁的温度满足，
+\begin{equation}
+{T_w}\left( t \right) = \frac{{{T_{rs,1}}\left( t \right) + {T_{rs,0}}\left( t \right)}}{2} = \frac{{{T_{sc,a}}}}{{2\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}} + {T_{rs,1}}({1 - \frac{1}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}}})
+\end{equation}

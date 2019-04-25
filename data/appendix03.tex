@@ -1,0 +1,47 @@
+\chapter{AA-CAES能量枢纽市场竞标算例设置}
+\label{cha:aa-caes-case-append}
+
+\section{算例与负荷及价格曲线对应关系}
+
+\begin{table}[!htp]
+\scriptsize
+\renewcommand{\arraystretch}{1.3}
+\renewcommand{\tabcolsep}{1em}
+\caption{算例与负荷及价格曲线对应关系}
+\centering
+\begin{tabular}{ccccc}
+\toprule
+{场景} & {电负荷} & {热负荷} & {电价} & {燃气价格}  \\
+\midrule
+BEN      &  冬   &  冬   &  El-RT           &  Gas-BEN \\
+El-TOU   &  冬   &  冬   &  \textbf{El-TOU} &  Gas-BEN \\
+El-PV    &  冬   &  冬   &  \textbf{El-PV}  &  Gas-BEN \\
+El-Ex    &  冬   &  冬   &  \textbf{El-Ex}  &  Gas-BEN \\
+Spring   &  \textbf{春}  &  \textbf{春}     &  El-RT   &   Gas-BEN \\
+Summer   &  \textbf{夏}  &  \textbf{夏}     &  El-RT   &   Gas-BEN \\
+%Fall     &  Spring-fall  &  Fall-winter &     El-RP     &   Gas-BEN \\
+Gas-Ex   &  冬   &  冬    &    El-RT    &   \textbf{Gas-Ex}  \\
+Gas-PV   &  冬   &  冬    &    El-RT    &   \textbf{Gas-PV}  \\
+\bottomrule
+\end{tabular}
+\label{tab:Relation}
+\end{table}
+
+\section{能量枢纽市场力检验结果}
+\begin{table}[!htp]
+\scriptsize
+\renewcommand{\arraystretch}{1.3}
+\renewcommand{\tabcolsep}{1em}
+\caption{能量枢纽市场力检验($\$$)}
+\centering
+\begin{tabular}{cccccc}
+\toprule
+{场景} & {PDN成本} & {Gas成本} & {PDN收入} & {DHN收入} & {利润}\\
+\midrule
+MP-GasLim     & 314.96    & 564.95   & 951.66    & 394.68  & 466.44 \\
+MP-TBPos      & 401.61    & 416.41   & 872.68    & 396.37  & 451.02 \\
+MP-RtCap      & 863.39    & 9.77     & 916.74    & 393.79  & 439.94 \\
+\bottomrule
+\end{tabular}
+\label{tab:MPResults}
+\end{table}
