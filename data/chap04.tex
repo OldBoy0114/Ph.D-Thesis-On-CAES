@@ -66,7 +66,7 @@ II型AA-CAES能量枢纽由于包含燃气与电能两个输入端，对外的�
 
 在任一时段$t$，能量枢纽中AA-CAES消耗的电功率$W_t^c$由第2章中压缩机额定工况热力学模型(\ref{equ:comp-real-temp-2})-(\ref{equ:comp-pressure})给定，能量枢纽中AA-CAES提供的电功率$W_t^e$ 由第2章中膨胀机额定工况热力学模型(\ref{equ:turb-real-temp-2})-(\ref{equ:turb-pressure})给定。
 
-对于用于区域综合能源系统的I型AA-CAES能量枢纽而言，其储气库一般会采用压力容器，储气库的温度会通过保温措施维持恒定。因此，储气库模型可以采用第\ref{cha:simulation}章中的VT模型(\ref{equ:Air-tank-model-VT})，即任一时刻$t$中储气库的储气压力SOC可以描述为，
+对于用于区域综合能源系统的I型AA-CAES能量枢纽而言，其储气库一般会采用压力容器，储气库的温度会通过保温措施维持恒定。因此，储气库模型可以采用第\ref{cha:simulation}章中的VT模型(\ref{equ:Air-tank-model-VT})，即任一时刻$t$中储气库的储气压力SOC可以描述为
 \begin{subequations}
 \label{eq:hub-pressure-SOC}
 \begin{gather}
@@ -76,7 +76,7 @@ p_{min}^{as} \le p_{t}^{as} \le p_{max}^{as},\forall t
 \end{subequations}
 其中，$p_{t}^{as}$ 为储气库压力水平；$T_t^{as}$ 为储气库内空气温度；$u_t^c$与$u_t^e$分别为表示压缩储能与膨胀释能运行状态的布尔量；其它变量或参数已在前文相关章节中定义\footnote{第3章至第5章主要研究面向电力系统运行的AA-CAES，需引入表示运行时段的角标$t$，导致相关变量的命名复杂。为简化变量符号，在不引起混淆的情况下，本章允许对变量上下标的相对位置做了适当调换。}。
 
-相应地，储热水平可由(\ref{equ:TES-HTF-temp})简化为，
+相应地，储热水平可由(\ref{equ:TES-HTF-temp})简化为
 \begin{subequations}
 \label{eq:hub-thermal-SOC}
 \begin{gather}
@@ -84,7 +84,7 @@ H_{t}^{TES} = H_{t - 1}^{TES}(1-\gamma_H) + u_{t}^c h_{t}^c - u_{t}^e h_{t}^e - 
 H_{min}^{TES} \le H_{t}^{TES} \le H_{max}^{TES},\forall t
 \end{gather}
 \end{subequations}
-其中，$h_t^c$与$h^e$分别为压缩储能阶段的产热功率与膨胀释能阶段的耗热功率；$h_t^g$为AA-CAES为能量枢纽提供的对外供热功率。由电热泵提供的热功率为，
+其中，$h_t^c$与$h^e$分别为压缩储能阶段的产热功率与膨胀释能阶段的耗热功率；$h_t^g$为AA-CAES为能量枢纽提供的对外供热功率。由电热泵提供的热功率为
 \begin{equation}
 \label{equ:model-HP}
 h_{t}^{hp} = \eta_{hp}d_{t}^{hp} \\
@@ -95,7 +95,7 @@ h_{t}^{hp} = \eta_{hp}d_{t}^{hp} \\
 
 \textbf{（2）II型AA-CAES能量枢纽}
 
-II型AA-CAES能量枢纽由于内置了储热单元，同时具有燃气输入以及CHP等灵活性组件的支撑，其内部的AA-CAES储电单元受宽工况运行的影响较小，可以采用等效电池模型（或第\ref{cha:aa-caes}章中的双SOC能量模型）刻画运行特性。本节采用等效电池模型进行建模，以突出整个能量枢纽对外的热电联供特性。针对图~\ref{fig:AA-CAES-Hub-V2}所示的II 型AA-CAES能量枢纽，其热电联供运行模型为，
+II型AA-CAES能量枢纽由于内置了储热单元，同时具有燃气输入以及CHP等灵活性组件的支撑，其内部的AA-CAES储电单元受宽工况运行的影响较小，可以采用等效电池模型（或第\ref{cha:aa-caes}章中的双SOC能量模型）刻画运行特性。本节采用等效电池模型进行建模，以突出整个能量枢纽对外的热电联供特性。针对图~\ref{fig:AA-CAES-Hub-V2}所示的II 型AA-CAES能量枢纽，其热电联供运行模型为
 \begin{subequations}
 \label{eq:EH-Cons-II}
 \begin{gather}
@@ -127,7 +127,7 @@ H_{t+1} = H_t + h_t^{ch} \eta^{tsu}_+ - h_t^{dis}/\eta^{tsu}_-,~ \forall t \labe
 
 \subsection{区域供热网络潮流模型}
 \label{sec:st-case-dispatch-DHN}
-区域供热网络通常由热源、热负荷及具有相同拓扑结构的供水网络与回水网络组成，如图~\ref{Fig:DHN-Topology}~所示。我们采用由热力分布和水力分布构成的工质流模型描述供回水温度、质量流率等热网潮流信息，其热力分布可建模为\cite{LXZ-DHN-2016, DHN-Model-17}，
+区域供热网络通常由热源、热负荷及具有相同拓扑结构的供水网络与回水网络组成，如图~\ref{Fig:DHN-Topology}~所示。我们采用由热力分布和水力分布构成的工质流模型描述供回水温度、质量流率等热网潮流信息，其热力分布可建模为\cite{LXZ-DHN-2016, DHN-Model-17}
 \begin{subequations}
 \label{eq:DHN-Thermal-Part}
 \begin{gather}
@@ -147,7 +147,7 @@ H_{t+1} = H_t + h_t^{ch} \eta^{tsu}_+ - h_t^{dis}/\eta^{tsu}_-,~ \forall t \labe
 \label{Fig:DHN-Topology}
 \end{figure}
 
-质量流率（水力分布）可通过质量守恒约束确定\cite{LXZ-DHN-2016, DHN-Model-17}，
+质量流率（水力分布）可通过质量守恒约束确定\cite{LXZ-DHN-2016, DHN-Model-17}，即
 \begin{subequations}
 \label{eq:DHN-Hydra-Part}
 \begin{gather}
@@ -162,7 +162,7 @@ H_{t+1} = H_t + h_t^{ch} \eta^{tsu}_+ - h_t^{dis}/\eta^{tsu}_-,~ \forall t \labe
 \end{subequations}
 其中，$\dot m_{i,t}^g$与$\dot m_{i,t}^d$分别为节点$i$热源（如AA-CAES能量枢纽）与热负荷的质量流率；$\dot m_b^u$为管道$b$的质量流率上界。(\ref{eq:DHN-Hydra-Part-S})与(\ref{eq:DHN-Hydra-Part-R})分别表示供水侧与回水侧节点$i$的质量平衡约束；(\ref{eq:DHN-Hydra-Part-Limit})表示管道运行的物理限制。
 
-供热网络中热源与热负荷节点的热功率满足，
+供热网络中热源与热负荷节点的热功率满足：
 \begin{subequations}
 \label{eq:DHN-heat-power-model}
 \begin{gather}
@@ -176,7 +176,7 @@ h_{i,t}^{g} = c_p \dot m_{i,t}^g  (\tau_{i,t}^S - \tau_{i,t}^R), \forall i,t
 
 \subsection{区域配电网络潮流模型}
 \label{sec:st-case-dispatch-PDN}
-区域供电网络一般为辐射式结构, 如图~\ref{Fig:PDN-Topology}~所示，可采用Dist Flow潮流模型进行建模为\cite{Distflow-WFL, Branchflow-SH1}，
+区域供电网络一般为辐射式结构, 如图~\ref{Fig:PDN-Topology}~所示，可采用Dist Flow潮流模型进行建模为\cite{Distflow-WFL, Branchflow-SH1}
 \begin{subequations}
 \label{eq:PDN-Branch-Flow-All}
 \begin{gather}
@@ -198,7 +198,7 @@ p_{i,t}^l \le p_{i,t}^g \le p_i^u,q_i^l \le q_{i,t}^g \le q_i^u,\forall i,t \lab
 \label{Fig:PDN-Topology}
 \end{figure}
 
-Dist Flow模型(\ref{eq:PDN-Branch-Flow-All})描述了热电综合能源系统中的（电功率）潮流分布，其优势在于可以给出节点电压、线路无功等配电网中较为关注的运行信息，同时该模型可被线性化或凸松弛化（如二阶锥松弛\cite{Thesis-Liubin}）以高效求解。例如，线性化的DistFlow模型为\cite{BFM-Lin-1,BFM-Lin-2}，
+Dist Flow模型(\ref{eq:PDN-Branch-Flow-All})描述了热电综合能源系统中的（电功率）潮流分布，其优势在于可以给出节点电压、线路无功等配电网中较为关注的运行信息，同时该模型可被线性化或凸松弛化（如二阶锥松弛\cite{Thesis-Liubin}）以高效求解。例如，线性化的DistFlow模型为\cite{BFM-Lin-1,BFM-Lin-2}
 \begin{subequations}
 \label{eq:Lin-Dist-Flow-Non-OLTC}
 \begin{gather}
@@ -218,7 +218,7 @@ p_i^l \le p_{i,t}^g \le p_i^u,q_i^l \le q_{i,t}^g \le q_i^u, \forall i,t
 %
 %若配电网中无离散的电容器组等无功补偿装置及OLTC等调节装置时，配电网潮流模型可退化为
 
-对于实际运行的配电网而言，为了维持较好的电压质量，一般会增设连续无功补偿装置（如SVG）、离散的电容器组以及有载调压变压器（OLTC）等。为此，可在线性化DistFlow 模型(\ref{eq:Lin-Dist-Flow-Non-OLTC})的基础上，修正含离散电容器或连续无功补偿装置以及含OLTC线路的无功平衡方程(\ref{eq:PF-Q})与节点电压方程(\ref{eq:PF-U})为\cite{PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}，
+对于实际运行的配电网而言，为了维持较好的电压质量，一般会增设连续无功补偿装置（如SVG）、离散的电容器组以及有载调压变压器（OLTC）等。为此，可在线性化DistFlow 模型(\ref{eq:Lin-Dist-Flow-Non-OLTC})的基础上，修正含离散电容器或连续无功补偿装置以及含OLTC线路的无功平衡方程(\ref{eq:PF-Q})与节点电压方程(\ref{eq:PF-U})为\cite{PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}
 \begin{subequations}
 \label{eq:Lin-Dist-Flow-Plus-OLTC}
 \begin{gather}
@@ -247,7 +247,7 @@ W_i^{g,l} \le W_{i,t}^g \le W_i^{g,u},\forall i,t
 无碳排调度模型(\ref{eq:CAES-Hub-dispatch})为非线性优化问题，其非线性主要源自配电网潮流模型及供热网络潮流模型，本小节将分别给出相应的线性化方法，以在不丢失准确性的同时将模型转化为易于高效求解的MILP问题。事实上，OLTC、电容/电抗器组等离散型无功补偿装置的调节或投切亦存在相应的运行成本，目标函数(\ref{eq:CAES-Hub-dispatch-obj})中可进一步扩展至考虑无功补偿成本，相关的线性化及求解方法也基本适用。
 
 \subsubsection{配电网潮流模型的线性化}
-改进的区域配电网潮流模型(\ref{eq:Lin-Dist-Flow-Non-OLTC})-(\ref{eq:Lin-Dist-Flow-Plus-OLTC}) 中的非线性主要源自离散电容器组引起的非线性项${U_{j,t}}{C_j}/2$与OLTC变比调节引入的非线性项${{{U_{j,t}}}}/{{K_{ij,t}^2}}$。类似于\ref{sec:chap3-bid-aa-caes}节中的布尔展开法，非线性项${U_{j,t}}{C_j}/2$中的离散量$C_j$可线性化为\cite{PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}，
+改进的区域配电网潮流模型(\ref{eq:Lin-Dist-Flow-Non-OLTC})-(\ref{eq:Lin-Dist-Flow-Plus-OLTC}) 中的非线性主要源自离散电容器组引起的非线性项${U_{j,t}}{C_j}/2$与OLTC变比调节引入的非线性项${{{U_{j,t}}}}/{{K_{ij,t}^2}}$。类似于\ref{sec:chap3-bid-aa-caes}节中的布尔展开法，非线性项${U_{j,t}}{C_j}/2$中的离散量$C_j$可线性化为\cite{PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}
 \begin{subequations}
 \begin{gather}
 \label{eq:UC-approx}
@@ -255,11 +255,11 @@ W_i^{g,l} \le W_{i,t}^g \le W_i^{g,u},\forall i,t
 {0 \le {2^0}{g_{j,0}} + {2^1}{g_{j,1}} +  \cdots  + {2^{{v_j}}}{g_{j,{v_j}}} \le ({C_j^u - C_j^l})/{s_j},}{\forall j \in {E_D}}
 \end{gather}
 \end{subequations}
-其中，$C_j^l$与$C_j^u$分别为电容器或电抗器容量的最小值与最大值；${s_j}$ 为电容器或电抗器的步进容量；${E_D}$ 为增设电容器或电抗器的母线集合；整数变量$v_j$ 表征离散化段数，可由下式决定
+其中，$C_j^l$与$C_j^u$分别为电容器或电抗器容量的最小值与最大值；${s_j}$ 为电容器或电抗器的步进容量；${E_D}$ 为增设电容器或电抗器的母线集合；整数变量$v_j$ 表征离散化段数，可由下式决定：
 \begin{equation}
 {\log _2}({\frac{{C_j^u - C_j^l}}{{{s_j}}} + 1})-1 \le {v_j} \le {\log _2}({\frac{{C_j^u - C_j^l}}{{{s_j}}} + 1})
 \end{equation}
-因此，非线性项${U_{j,t}}{C_{j,t}}$可转化为，
+因此，非线性项${U_{j,t}}{C_{j,t}}$可转化为
 \begin{equation}
 \label{eq:UC-approx-2}
 {U_{j,t}}{C_{j,t}} = C_j^l{U_{j,t}} + {s_j}({{2^0}{\delta _{j,0}} +  \cdots  + {2^{{v_j}}}{\delta _{j,{v_j}}}})
@@ -275,14 +275,14 @@ W_i^{g,l} \le W_{i,t}^g \le W_i^{g,u},\forall i,t
 \end{subequations}
 其中，${\delta _{j,k,t}}$为辅助的连续量；M为一足够大的正数。
 
-针对含有载调压器~OLTC~的支路~$l(i,j)$，其无功功率约束(\ref{eq:Lin-Dist-Flow-Plus-OLTC-2})可线性化为，
+针对含有载调压器~OLTC~的支路~$l(i,j)$，其无功功率约束(\ref{eq:Lin-Dist-Flow-Plus-OLTC-2})可线性化为
 \begin{equation}
 \label{eq:OLTC-approxi-1}
 \frac{{{U_{j,t}}}}{{K_{ij,t}^2}} = {U_{j,t}}({\frac{{{b_{ij,1,t}}}}{{K_{ij,1}^2}} + \frac{{{b_{ij,2,t}}}}{{K_{ij,2}^2}}{\rm{ + }} \cdots {\rm{ + }}\frac{{{b_{ij,{n_{ij}},t}}}}{{K_{ij,{n_{ij}}}^2}}})
 \end{equation}
 其中，$K_{ij,1}^{}$， $K_{ij,2}^{}$, ..., $K_{ij,{n_{ij}}}^{}$ 为增设于线路$l(i,j)$ 的OLTC变比的可能取值；${n_{ij}}$为相应的变比离散取值个数。
 
-综上，含OLTC的节点电压约束(\ref{eq:Lin-Dist-Flow-Plus-OLTC-2})可线性化为\cite{PDN-Model-Reactive-Power-14, PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}，
+综上，含OLTC的节点电压约束(\ref{eq:Lin-Dist-Flow-Plus-OLTC-2})可线性化为\cite{PDN-Model-Reactive-Power-14, PDN-Model-Reactive-Power-DT-16, CAES-IES-16-Rui}
 \begin{subequations}
 \label{eq:OLTC-approxi-2}
 \begin{gather}
@@ -348,7 +348,7 @@ W_i^{g,l} \le W_{i,t}^g \le W_i^{g,u},\forall i,t
 为了维持配电网中各母线的电压质量，在配电网各中枢节点部署了无功补偿装置。参考文献\inlinecite{Thesis-Liubin}中的系统设置，在线路\#1, \#18, \#22, \#25 上装设最小分接头为0.95，最大分接头为1.05 以及分接头步长为0.01的OLTC\cite{Thesis-Liubin}。并联电容器装设于母线 \#5, \#10, \#13, \#17, \#20, \#23, \#30，其容量范围为0-0.2，调节步长为~0.05。此外，SVG增设于母线~\#4, \#9, \#14，以提供连续无功补偿。
 
 \subsubsection{能量枢纽仿真}
-本小节先仿真分析I型能量枢纽内部的AA-CAES在一个循环周期内的能量平衡情况，为分析其在热电综合能源系统中的供能特性提供参考。内置的AA-CAES采用两级压缩两级膨胀结构，采用常压-常压运行方式及热电联供供能模式，储气库的工作压力范围为8.4 MPa-9.0 MPa。由于常压-常压运行模式的设定，储气库的压力变化对压缩机与膨胀机的部分负载运行影响不大。同时，储气库的压力工作范围较窄，温度变化也不大。压缩机与膨胀机的额定质量流率分别为0.64 kg/s, 2.46 kg/s，其它参数分别如表\ref{tab:para-comp-energy-hub-dispatch}及表\ref{tab:para-turb-energy-hub-dispatch}所示，储气库体积为 2000 m$^3$。
+本小节先仿真分析I型能量枢纽内部的AA-CAES在一个循环周期内的能量平衡情况，为分析其在热电综合能源系统中的供能特性提供参考。内置的AA-CAES采用两级压缩两级膨胀结构，采用定压-定压运行方式及热电联供供能模式，储气库的工作压力范围为8.4 MPa-9.0 MPa。由于定压-定压运行模式的设定，储气库的压力变化对压缩机与膨胀机的部分负载运行影响不大。同时，储气库的压力工作范围较窄，温度变化也不大。压缩机与膨胀机的额定质量流率分别为0.64 kg/s, 2.46 kg/s，其它参数分别如表\ref{tab:para-comp-energy-hub-dispatch}及表\ref{tab:para-turb-energy-hub-dispatch}所示，储气库体积为 2000 m$^3$。
 
 \begin{table}[htb]
   \centering
@@ -412,7 +412,7 @@ AA-CAES热电多能联供时，储气库储气压力的变化仅由压缩储能�
 I型能量枢纽中AA-CAES在多能联供模式下具有的供能灵活性，使其既可以经典的压缩-储热模式（时段1-时段6）与膨胀-耗热模式（时段13-时段14）运行，以实现电能“缓存”与“搬移”，又可运行于静置-供热模式（时段10、时段16）与压缩-供热模式（时段24），从而为区域热电综合能源系统注入运行灵活性。在当前的系统设定下，压缩机可以实现高负载或额定功率运行来减小购电成本，而膨胀机则在部分时段（时段13）以部分负载方式发电，消耗低谷时段存储的低价电能，以降低热电综合能源系统总体运行成本。
 
 此外，由图~\ref{Fig:Hub-Dispatch-Exe-ASU-SOC}及图\ref{Fig:Hub-Dispatch-Exe-TES-SOC}可以看出，实际调度运行时AA-CAES损失能量较多。结合图
-\ref{Fig:Hub-Dispatch-AA-CAES-Flow}可知，AA-CAES在一个循环周期存在32.88\%的能量损失，而该损失主要源自储气库入口节流阀与出口节流阀实现的常压-常压运行模式带来的节流损失。事实上，可由压缩机与膨胀机适当地运行于由背压变化及入口压力变化引起的部分负载工况，便可减小由入口与出口节流阀带来的损失。
+\ref{Fig:Hub-Dispatch-AA-CAES-Flow}可知，AA-CAES在一个循环周期存在32.88\%的能量损失，而该损失主要源自储气库入口节流阀与出口节流阀实现的定压-定压运行模式带来的节流损失。事实上，可由压缩机与膨胀机适当地运行于由背压变化及入口压力变化引起的部分负载工况，便可减小由入口与出口节流阀带来的损失。
 
 \begin{figure}[H]
 \centering
@@ -484,7 +484,7 @@ I型能量枢纽中热泵与AA-CAES的热功率分配如图~\ref{Fig:Hub-Dispatc
 
 \subsection{热网质量-数量联合模型}
 \label{sec:DHN-Exergy-Model}
-假定针对图~\ref{Fig:DHN-Topology-Exergy}所示的区域供热网络已进行网潮流(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})分析。为此，可进一步建立热源节点的㶲平衡方程为，
+假定针对图~\ref{Fig:DHN-Topology-Exergy}所示的区域供热网络已进行网潮流(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})分析。为此，可进一步建立热源节点的㶲平衡方程为
 \begin{subequations}
 \label{eq:exergy-heat-source}
 \begin{gather}
@@ -503,7 +503,7 @@ W_i^g + \dot Ex_i^g = \dot Ex_i^S - \dot Ex_i^R + \Delta \dot Ex_i^g
 \label{Fig:DHN-Topology-Exergy}
 \end{figure}
 
-供水及回水管网的㶲流损失可表示为，
+供水及回水管网的㶲流损失可表示为
 \begin{subequations}
 \label{eq:Exergy-loss-pipe}
 \begin{gather}
@@ -513,7 +513,7 @@ W_i^g + \dot Ex_i^g = \dot Ex_i^S - \dot Ex_i^R + \Delta \dot Ex_i^g
 \end{subequations}
 其中，$\Delta \dot Ex_l^{pipe}$ 为管道$b$的㶲损；$\Delta \dot Q_b^{pipe}$为管道的热能损失，可由管道出口与入口温度计算而来。若尚未对DHN进行模型(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model}) 中的热力与水力状态分析，则可用(\ref{eq:Exergy-loss-pipe-V1}) 分析管道㶲损；若已对DHN进行了热力与水力状态分析，可采用(\ref{eq:Exergy-loss-pipe-V2}) 进行管道㶲损的分析。
 
-热力负荷子站（或换热器）中的㶲流损失为，
+热力负荷子站（或换热器）中的㶲流损失为
 \begin{subequations}
 \label{eq:Exergy-loss-heat-exchanger}
 \begin{gather}
@@ -561,7 +561,7 @@ W_i^g + \dot Ex_i^g = \dot Ex_i^S - \dot Ex_i^R + \Delta \dot Ex_i^g
 
 \subsubsection{热力市场出清问题}
 
-由第~\ref{sec:st-caes-dispatch}~节的区域供热管网潮流模型(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})可知，DHN的运行状态可由供回水管网的入口与出口温度，以及实现供回水管道耦合的热源与热负荷的供回水温度给定。若将所有的温度变量统一记为向量~$\rm \tau$~，用向量~$\bf h$~表征热源输出功率，并用向量$\dot {\bf m}$表示所有管道的质量流率，则~DHN~潮流(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})的紧凑形式可表示为，
+由第~\ref{sec:st-caes-dispatch}~节的区域供热管网潮流模型(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})可知，DHN的运行状态可由供回水管网的入口与出口温度，以及实现供回水管道耦合的热源与热负荷的供回水温度给定。若将所有的温度变量统一记为向量~$\rm \tau$~，用向量~$\bf h$~表征热源输出功率，并用向量$\dot {\bf m}$表示所有管道的质量流率，则~DHN~潮流(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})的紧凑形式可表示为
 \begin{subequations}
 \label{eq:DHN-TF-Comp}
 \begin{align}
@@ -571,23 +571,23 @@ C_H{\bf h} + D_H(\dot {\bf m})\tau \le d_H \label{eq:DHN-TF-Comp-IN}
 \end{subequations}
 其中，~$A_H$, ~$b_H$, ~$C_H$ 和 ~$d_H$ 分别为常系数矩阵；~$B_H(\dot {\bf m})$~ 及~$D_H(\dot {\bf m})$~ 表示依赖于~$\dot {\bf m}$的系数矩阵；热网潮流(\ref{eq:DHN-Thermal-Part})-(\ref{eq:DHN-heat-power-model})体现于 (\ref{eq:DHN-TF-Comp-EQ}) 中；$\tau$与 $\bf h$ 的上下界体现于(\ref{eq:DHN-TF-Comp-IN}) 中。显然，紧凑型DHN模型(\ref{eq:DHN-TF-Comp})为非线性且非凸。本节假定~DHN~运行于固定质量流率模式，即$\dot {\bf m}$ 为定值，如此约束集(\ref{eq:DHN-TF-Comp})退化为以节点温度~$\rm \tau$~和热源输出功率${\bf h}$为决策变量的线性模型。
 
-供热市场操作员HMO以实现AA-CAES型能量枢纽、燃气锅炉等热源间的经济调度为决策目标。从能量平衡的角度来看，热网运行成本在很大程度上依赖于热源的输出功率，其值等于热负荷与管道损失之和。事实上，$\dot {\bf m}$ 对管道热损失的影响较小。管道热损失可简化表示为，
+供热市场操作员HMO以实现AA-CAES型能量枢纽、燃气锅炉等热源间的经济调度为决策目标。从能量平衡的角度来看，热网运行成本在很大程度上依赖于热源的输出功率，其值等于热负荷与管道损失之和。事实上，$\dot {\bf m}$ 对管道热损失的影响较小。管道热损失可简化表示为
 \begin{equation}
 \label{eq:Pipe-Loss-Q}
 \Delta E = c_p \dot m (\tau^{in}-\tau^{out})
 \end{equation}
-将管道出口温度方程~(\ref{eq:DHN-Pipe-Loss-S})或~(\ref{eq:DHN-Pipe-Loss-R})代入~(\ref{eq:Pipe-Loss-Q})~可得\footnote{为了表示简洁，此处我们去掉了$\dot m$ 的下标。}，
+将管道出口温度方程~(\ref{eq:DHN-Pipe-Loss-S})或~(\ref{eq:DHN-Pipe-Loss-R})代入~(\ref{eq:Pipe-Loss-Q})~可得\footnote{为了表示简洁，此处我们去掉了$\dot m$ 的下标。}
 \begin{equation}
 \label{eq:Delta-E-App}
 \Delta E = c_p \dot m [ (\tau^{in}- \tau^{am})(1-{\rm e}^{-\frac{\lambda_b l_b}{c_p \dot m}})]
 \end{equation}
-其中，$0 < \lambda_b l_b/c_p \dot m \ll 1$。考虑到，${\rm e}^{-x} \approx 1-x$，则(\ref{eq:Delta-E-App})可近似为，
+其中，$0 < \lambda_b l_b/c_p \dot m \ll 1$。考虑到，${\rm e}^{-x} \approx 1-x$，则(\ref{eq:Delta-E-App})可近似为
 \begin{equation}
 \Delta E \approx c_p \dot m (\tau^{in}-\tau^{am}) \frac{\lambda_b l_b}{c_p \dot m} = \lambda_b l_b(\tau^{in} - \tau^{am})
 \end{equation}
 由此可知，$\Delta E$不依赖于$\dot m$。换言之，只要约束集(\ref{eq:DHN-TF-Comp})可行，供热管网水力条件对网络整体运行成本的影响不大。因此， $\dot {\bf m}$可被提前设置，即固定质量流率-变供水温度的运行模式~\cite{DHN-CFVT-2013}。
 
-尽管电热泵、能量枢纽（如AA-CAES型）等电制热供暖方式逐渐成为新一代热网中的热源\cite{4th-DHN-14}，但传统燃煤及燃气锅炉等仍为当前供热网络中的主要热力机组。因此，我们假定本节研究的~DHN~中含有燃煤及燃气锅炉等传统热源，其生产成本是其输出的凸二次函数。AA-CAES型能量枢纽向热力市场上报的竞标标的（热价~$\zeta^b$~与最大供热功率~$h_m^b$~），在热力市场出清问题中被视为常数。从而，热力市场出清模型为，
+尽管电热泵、能量枢纽（如AA-CAES型）等电制热供暖方式逐渐成为新一代热网中的热源\cite{4th-DHN-14}，但传统燃煤及燃气锅炉等仍为当前供热网络中的主要热力机组。因此，我们假定本节研究的~DHN~中含有燃煤及燃气锅炉等传统热源，其生产成本是其输出的凸二次函数。AA-CAES型能量枢纽向热力市场上报的竞标标的（热价~$\zeta^b$~与最大供热功率~$h_m^b$~），在热力市场出清问题中被视为常数。从而，热力市场出清模型为
 \begin{subequations}
 \label{eq:HM-Clearing}
 \begin{align}
@@ -608,7 +608,7 @@ C_{PDN} =  \sum_j \left[ a_j (p_j^g)^2 + b_j p_j^g \right]
 \end{equation}
 其中，第一项表示发电成本，$(a_j,b_j)$为二次成本系数；定义~$p^g_0 = \sum_{j \in \pi(0)} P_{0j}$~为从上级输电网（电力批发市场）输送到~PDN~的馈入电功率，$a_0=0$，$b_0$ 为上级电力市场电价；第二项（三项）是支付（收入）能量枢纽的购电（售电）$p^{gb}$ ($p^{db}$)的成本（收益）。
 
-定义向量~$\bf p$~为发电调度~$p^g_j$~与能量枢纽的能量交易~$p^{gb}$~, ~$p^{db}$~；~$p_m^{gb}$~与~$p_m^{db}$~分别为能量枢纽愿意售出及购买的最大功率，~$\bf x$~ 为其它变量。如此，基于~\ref{sec:st-case-dispatch-PDN}节线性化DistFlow电网潮流模型，电力市场出清的紧凑型模型可表示为，
+定义向量~$\bf p$~为发电调度~$p^g_j$~与能量枢纽的能量交易~$p^{gb}$~, ~$p^{db}$~；~$p_m^{gb}$~与~$p_m^{db}$~分别为能量枢纽愿意售出及购买的最大功率，~$\bf x$~ 为其它变量。如此，基于~\ref{sec:st-case-dispatch-PDN}节线性化DistFlow电网潮流模型，电力市场出清的紧凑型模型可表示为
 \begin{subequations}
 \label{eq:PM-Clearing}
 \begin{align}
@@ -622,7 +622,7 @@ C_{PDN} =  \sum_j \left[ a_j (p_j^g)^2 + b_j p_j^g \right]
 其中，(\ref{eq:PM-Clearing-Cons-EQ})代表等式约束(\ref{eq:PF-P})-(\ref{eq:PF-U})；(\ref{eq:PM-Clearing-Cons-IN})代表决策变量的上下界。与热力市场出清问题(\ref{eq:HM-Clearing})类似，电力市场出清问题亦为凸二次规划，其KKT系统是充要条件。
 
 \subsubsection{能量枢纽竞标模型}
-在市场运营问题中，AA-CAES型能量枢纽实际的功率输入与功率输出（$p_t^{gas}$, $p_t^{gb}$ , $p_t^{db}$ 及$h_t^b$ ）不能由其直接控制，而是由市场竞标结果决定，其竞标标的($p_{t,m}^{gb}$, $p_{t,m}^{db}$, $h_{t,m}^{b}$ )的上下界分别由下式给定，
+在市场运营问题中，AA-CAES型能量枢纽实际的功率输入与功率输出（$p_t^{gas}$, $p_t^{gb}$ , $p_t^{db}$ 及$h_t^b$ ）不能由其直接控制，而是由市场竞标结果决定，其竞标标的($p_{t,m}^{gb}$, $p_{t,m}^{db}$, $h_{t,m}^{b}$ )的上下界分别由下式给定：
 \begin{subequations}
 \label{eq:EH-Bid-Cons}
 \begin{gather}
@@ -640,16 +640,16 @@ h_{\min }^b \le h_{t,m}^b \le h_{\max }^b, ~\forall t \label{eq:EH-H-offer}
 \label{Fig:Market}
 \end{figure}
 
-AA-CAES型能量枢纽竞标框架如图~\ref{Fig:Market}~所示，其日前电力与热力市场主从博弈竞标模型为，
+AA-CAES型能量枢纽竞标框架如图~\ref{Fig:Market}~所示，其日前电力与热力市场主从博弈竞标模型为
 \begin{subequations}
 \label{eq:EH-Bidding}
 \begin{align}
 \max~ & (\bf \zeta^b)^T \bf h^b + (\bf \xi^b)^T {\bf p^{gb}} - {(\bf \chi^b)}^T {\bf p^{db}} - {(\bf \gamma)^T{\bf p^{gas}}} \label{eq:EH-Bid-Obj} \\
 \mbox{s.t.}~ %& \mbox{Bounds of bidding strategies} \label{eq:EH-Quantity-bnd}\\
-& \mbox{能量枢纽运行约束}~(\ref{eq:EH-Cons-II}) \label{eq:EH-Cons-2}\\
-& \mbox{热力市场出清问题}~(\ref{eq:HM-Clearing}) \label{eq:EH-Bid-HM}\\
-& \mbox{电力市场出清问题}~(\ref{eq:PM-Clearing}) \label{eq:EH-Bid-PM}\\
-& \mbox{竞标标的约束集}~(\ref{eq:EH-Bid-Cons})
+& \mbox{能量枢纽运行约束}~\eqref{eq:EH-Cons-II} \label{eq:EH-Cons-2}\\
+& \mbox{热力市场出清问题}~\eqref{eq:HM-Clearing} \label{eq:EH-Bid-HM}\\
+& \mbox{电力市场出清问题}~\eqref{eq:PM-Clearing} \label{eq:EH-Bid-PM}\\
+& \mbox{竞标标的约束集}~\eqref{eq:EH-Bid-Cons}
 \end{align}
 \end{subequations}
 其中，价格向量~$\bf \zeta^b$,~$\bf \xi^b$,~$\chi^b$,~$\bf \gamma$~分别表示日前电力市场的热功率报价、电功率报价、储能电价及燃料价格; 能量交易向量~$\bf h^{b}$~, ~$\bf p^{gb}$，$\bf p^{db}$, $\bf p^{gas}$~分别表示出清热量，出清电量、购电量及燃气需求。(\ref{eq:EH-Cons-2})表示能量枢纽的运行约束；能量交易由电力市场出清(\ref{eq:EH-Bid-PM})与热力市场出清问题(\ref{eq:EH-Bid-HM})确定。由此，能量枢纽日前竞标模型为均衡约束的数学规划问题（MPEC）\cite{MPEC-Conejo-book-12}。从博弈视角看，MPEC 问题(\ref{eq:EH-Bid-PM}) 可视为Stackelberg博弈\cite{Game-Mei-16, Game-MIT-94}，能量枢纽的最优策略和两个市场的出清结果即为该博弈的均衡。事实上，针对任一形式的热电能量枢纽，只要重新建模其运行约束(\ref{eq:EH-Cons-II})，竞标模型(\ref{eq:EH-Bidding})即可直接应用。
@@ -659,7 +659,7 @@ AA-CAES型能量枢纽竞标框架如图~\ref{Fig:Market}~所示，其日前电�
 
 \subsubsection{单层竞标模型}
 
-热力市场问题出清问题(\ref{eq:HM-Clearing})的最优性条件为，
+热力市场问题出清问题(\ref{eq:HM-Clearing})的最优性条件为
 \begin{subequations}
 \label{eq:KKT-Heat}
 \begin{align}
@@ -673,7 +673,7 @@ B_H(\dot {\bf m})\lambda_h + D_H^T(\dot {\bf m})\mu_h = 0,~
 \end{subequations}
 其中，$\lambda_h$ 与 $\mu_h$ 分别为(\ref{eq:HM-Clearing}) 中等式约束和不等式约束的对偶变量；向量$d_H$ 与 ${\bf c}_h$ 是能量枢纽上报于热力市场的竞标标的 （$h^b_m$ 与 $\zeta^b$）的线性函数，二者在热力市场出清问题中被视为常数。 (\ref{eq:KKT-Heat-Eq0}) 与 (\ref{eq:KKT-Heat-Eq1})分别为热力市场出清问题原变量的可行性约束；(\ref{eq:KKT-Heat-Eq2}) 与 (\ref{eq:KKT-Heat-Eq3})分别为对偶变量的可行性约束；(\ref{eq:KKT-Heat-Eq4}) 为互补松弛条件。
 
-相应地，电力市场出清问题(\ref{eq:PM-Clearing})的最优性条件为，
+相应地，电力市场出清问题(\ref{eq:PM-Clearing})的最优性条件为
 \begin{subequations}
 \label{eq:KKT-Power}
 \begin{align}
@@ -691,7 +691,7 @@ B_P^T\lambda_p + D_P^T\mu_p = {\bf 0},~\mu_p \ge {\bf 0}  \label{eq:KKT-Power-Eq
 \subsubsection{~MILP~近似模型}
 由于互补松弛条件(\ref{eq:KKT-Heat-Eq4})与(\ref{eq:KKT-Power-Eq4})的存在，~KKT~系统(\ref{eq:KKT-Heat})与(\ref{eq:KKT-Power})仍为非线性非凸。同时，目标函数(\ref{eq:EH-Bid-Obj})中的~${(\bf \zeta^b)}^T {\bf h^{b}}$, ~${(\bf \xi^b)}^T {\bf p^{gb}}$,  ${(\bf \chi^b)}^T {\bf p^{db}}$等双线性项，也增加了单层竞标模型的求解难度。
 
-针对互补松弛条件$\bf 0 \le  x \bot y \ge 0$，采用大~M~法\cite{Big-M-1981}线性化，
+针对互补松弛条件$\bf 0 \le  x \bot y \ge 0$，采用大~M~法\cite{Big-M-1981}线性化为
 \begin{equation}
 {\bf 0} \le {\bf x} \le M {\bf z},~
 {\bf 0} \le {\bf y} \le M ({\bf 1-z})
@@ -699,17 +699,17 @@ B_P^T\lambda_p + D_P^T\mu_p = {\bf 0},~\mu_p \ge {\bf 0}  \label{eq:KKT-Power-Eq
 \end{equation}
 其中，$\bf z$ 为与$\bf x$ 及$\bf y$具有相同维数的布尔向量；$\bf 1$为与$\bf z$具有相同维数的全~1~向量；~M~为足够大的数，且只要参数M足够大，近似方法(\ref{eq:bigM})不会引入任何误差。
 
-针对目标函数中形如$xy$（$x$ 和$y$为两个连续变量）的双线性项，本节采用与第~\ref{sec:chap3-bid-aa-caes}节及第~\ref{sec:st-caes-dispatch}节类似的布尔展开法\cite{Binary-Expansion-1,Binary-Expansion-2} 进行线性化。特别地，采用区间$[y^l,y^m]$ 中的$2^K$ 个离散点去近似连续量$y$ 的可能取值，
+针对目标函数中形如$xy$（$x$ 和$y$为两个连续变量）的双线性项，本节采用与第~\ref{sec:chap3-bid-aa-caes}节及第~\ref{sec:st-caes-dispatch}节类似的布尔展开法\cite{Binary-Expansion-1,Binary-Expansion-2} 进行线性化。特别地，采用区间$[y^l,y^m]$ 中的$2^K$ 个离散点去近似连续量$y$ 的可能取值，即
 \begin{equation}
 \label{eq:Binary-Expansion}
 y = y^l + \Delta y \sum_{k=1}^K 2^{k-1} z_k
 \end{equation}
-其中， $z_k$, $k=1,\cdots,K$为布尔量，同时$\Delta y$满足，
+其中， $z_k$, $k=1,\cdots,K$为布尔量，同时$\Delta y$满足：
 \begin{equation}
 \label{eq:Delta-y}
 \Delta y = \dfrac{y^m-y^l}{2^K}
 \end{equation}
-如此，$xy = x y^l + \Delta y \sum_{k=1}^K 2^{k-1} x z_k$。 令 $v_k = x z_k$, $k=1,\cdots,K$，则双线性项$xy$可重新建模为，
+如此，$xy = x y^l + \Delta y \sum_{k=1}^K 2^{k-1} x z_k$。 令 $v_k = x z_k$, $k=1,\cdots,K$，则双线性项$xy$可重新建模为
 \begin{subequations}
 \label{eq:Binary-Expansion-xy}
 \begin{gather}
@@ -719,7 +719,7 @@ x y = x y^l + \Delta y \sum_{k=1}^K 2^{k-1} v_k \label{eq:xy-BE-1}\\
 \end{gather}
 \end{subequations}
 
-在本节研究的AA-CAES型能量枢纽竞标问题中，由于能量协议是市场出清问题的最优解，对其进行离散化近似将会导致精确解的丢失，从而可能导致KKT条件的不可行。因此，本节采用布尔展开法近似竞标价格$(\bf \zeta^b, \bf \xi^b, \chi^b)$。针对目标函数(\ref{eq:EH-Bid-Obj})中的所有双线性项，实施(\ref{eq:xy-BE-1})-(\ref{eq:xy-BE-3}) 的布尔展开法，即可获取如下的线性化目标函数（记为Obj-Lin），
+在本节研究的AA-CAES型能量枢纽竞标问题中，由于能量协议是市场出清问题的最优解，对其进行离散化近似将会导致精确解的丢失，从而可能导致KKT条件的不可行。因此，本节采用布尔展开法近似竞标价格$(\bf \zeta^b, \bf \xi^b, \chi^b)$。针对目标函数(\ref{eq:EH-Bid-Obj})中的所有双线性项，实施(\ref{eq:xy-BE-1})-(\ref{eq:xy-BE-3}) 的布尔展开法，即可获取如下的线性化目标函数（记为Obj-Lin）:
 \begin{equation}
 \label{eq:EH-Bid-Obj-Lin}
 \begin{aligned}
@@ -729,11 +729,11 @@ x y = x y^l + \Delta y \sum_{k=1}^K 2^{k-1} v_k \label{eq:xy-BE-1}\\
 \end{aligned}
 \end{equation}
 
-综上，AA-CAES型能量枢纽双层竞标模型(\ref{eq:EH-Bidding})的近似MILP形式为，
+综上，AA-CAES型能量枢纽双层竞标模型(\ref{eq:EH-Bidding})的近似MILP形式为
 \begin{equation}
 \label{eq:EH-Bid-MILP}
 \begin{aligned}
-\max~ & \mbox{Obj-Lin } (\ref{eq:EH-Bid-Obj-Lin}) \\
+\max~ & \mbox{Obj-Lin } \eqref{eq:EH-Bid-Obj-Lin} \\
 \mbox{s.t.}~  & \mbox{能量枢纽运行约束}\\ % (\ref{eq:EH-Cons-II})
       & \mbox{布尔展开附加约束}  \\
        & \mbox{热网出清线性化~KKT~系统}\\

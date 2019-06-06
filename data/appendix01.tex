@@ -43,17 +43,17 @@
 {T_{sc,a,k}}B{i^ + } = {T_{rs,0,k}}({\frac{{B{i^ + }}}{2} + 1}) + {T_{rs,1,k}}({\frac{{B{i^ + }}}{2} - 1})
 \end{equation}
 
-从而有，
+从而有
 \begin{equation}
 {T_{rs,0}} = {T_{rs,0,k}} = \frac{{{T_{sc,a,k}}}}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}} + {T_{rs,1,k}}({1 -\frac{1}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}}})
 \end{equation}
 
-由此，边界点1的边界条件可写为，
+由此，边界点1的边界条件可写为
 \begin{equation}
 {\left. {\frac{{\partial {T_{rs}}}}{{\partial t}}} \right|_{{r_1}}} = {\hat r_{rs}}\left[ {{T_{rs,2}}\left( {{g_1} + 1} \right) + {T_{sc,a}}\frac{{\left( {1 - {g_1}} \right)}}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}} + {T_{rs,1}}({\left( {1 - {g_1}} \right)({1 - \frac{1}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}}) - 2})} \right]
 \end{equation}
 
-边界点$n$所需的边界温度可设为环境温度，即${T_{rs,n + 1}} = {T_{env}}$，从而可得矩阵${\bf{M}}$和矩阵${\bf{P}}$分别满足\cite{Cavern-wall-09,Model-AA-CAES-10}，
+边界点$n$所需的边界温度可设为环境温度，即${T_{rs,n + 1}} = {T_{env}}$，从而可得矩阵${\bf{M}}$和矩阵${\bf{P}}$分别满足\cite{Cavern-wall-09,Model-AA-CAES-10}：
 \begin{subequations}
 \begin{gather}
 {\bf{M}} = \left[ {\begin{array}{*{20}{c}}
@@ -70,7 +70,7 @@ P = \left[ {\begin{array}{*{20}{c}}
 \end{array}} \right]
 \end{gather}
 \end{subequations}
-其中，${M_{11}} = \left( {1 - {g_1}} \right)\left( {1 - \frac{1}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}} \right) - 2$。进一步，通过求解一维热传导方程的空间离散化方程组，可获取洞穴壁的温度满足，
+其中，${M_{11}} = \left( {1 - {g_1}} \right)\left( {1 - \frac{1}{{\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}}} \right) - 2$。进一步，通过求解一维热传导方程的空间离散化方程组，可获取洞穴壁的温度满足为
 \begin{equation}
 {T_w}\left( t \right) = \frac{{{T_{rs,1}}\left( t \right) + {T_{rs,0}}\left( t \right)}}{2} = \frac{{{T_{sc,a}}}}{{2\left( {\frac{1}{{B{i^ + }}} + \frac{1}{2}} \right)}} + {T_{rs,1}}({1 - \frac{1}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}}})
 \end{equation}

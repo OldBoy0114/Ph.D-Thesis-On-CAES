@@ -8,7 +8,7 @@
 
 在新能源电力系统应用背景下，AA-CAES各实现形式均不同程度的运行于非额定工况。具体地，若应用于电源侧与风电协同，则压缩机与空气透平将处于部分负载运行；若应用于电网侧削峰填谷及容量备用，AA-CAES将响应价格与负荷波动运行非额定工况；若应用于多能互补系统，AA-CAES内部组件将通过运行于非设计工况响应电热负荷需求的频繁变化。因此，需要分析外部运行环境提出的宽工况运行要求引起的内部组件的部分负载运行特性对AA-CAES整体运行特性的影响。
 
-实现准确的热力学特性建模是分析AA-CAES宽工况运行性能的基本前提。本章提出了计及组件部分负载运行特性的AA-CAES通用宽工况热力学仿真模型，考虑了“常压—常压”、“常压—滑压”、“滑压—常压”、“滑压—滑压”等四种不同的膨胀机与压缩机运行模式；针对容积控制型储气库，建立通用定容、等温、绝热三种储气库模型，进而构建了基于热力学第一定律与热力学第二定律的通用仿真模型，从而为后续章节应用于新能源电力系统源、网、荷侧的不同AA-CAES实现形式的建模与分析奠定基础。
+实现准确的热力学特性建模是分析AA-CAES宽工况运行性能的基本前提。本章提出了计及组件部分负载运行特性的AA-CAES通用宽工况热力学仿真模型，考虑了“定压—定压”、“定压—滑压”、“滑压—定压”、“滑压—滑压”等四种不同的膨胀机与压缩机运行模式；针对容积控制型储气库，建立通用定容、等温、绝热三种储气库模型，进而构建了基于热力学第一定律与热力学第二定律的通用仿真模型，从而为后续章节应用于新能源电力系统源、网、荷侧的不同AA-CAES实现形式的建模与分析奠定基础。
 
 本章结构安排如图~\ref{fig:Model-Flow-Chart}所示，第~\ref{sec:chap2-struc-supply}~节考虑包含各常规组件的典型AA-CAES系统结构，分析其运行模式与供能模式，为研究系统级宽工况热力学仿真模型提供依据；第~\ref{sec:part-load-energy}~ 节基于热力学第一定律，建立~AA-CAES~各组件的部分负载仿真模型及边界条件；第~\ref{sec:chap2-part-load-exergy}~节基于热力学第二定律，建立各组件的宽工况㶲模型；第~\ref{sec:chap2-bound-measure}~节基于构建的热力学仿真模型分析一典型 AA-CAES系统的内部热力学特性及外部供能特性。
 %从而为第\ref{cha:aa-caes}章至第\ref{cha:ca-recs}章源—网— 荷三侧典型AA-CAES应用形式的准确建模与运行方法研究提供基础。
@@ -47,19 +47,19 @@
 \end{itemize}
 
 \subsection{运行模式（压力视角）}
-根据压缩机背压以及透平入口空气压力的恒定与否，CAES电站可以存在多种运行模式。针对D-CAES电站，文献\inlinecite{CAES-Discharge-16}研究了由储气库出口侧节流阀的控制实现的固定入口空气压力（常压）与变入口空气压力（滑压）等透平运行模式。针对AA-CAES型多能联供系统，文献\inlinecite{CAES-CCHP-off-design-18}引入了由储气库入口与出口节流阀的有无界定的四种运行模式。为实现更加通用的宽工况热力学特性建模，本文引入文献\inlinecite{CAES-Discharge-16,CAES-CCHP-off-design-18}中的运行模式概念。具体地，由末级压缩机出口空气压力与首级膨胀机入口空气压力是否（相对）恒定来界定如下四种运行模式：
+根据压缩机背压以及透平入口空气压力的恒定与否，CAES电站可以存在多种运行模式。针对D-CAES电站，文献\inlinecite{CAES-Discharge-16}研究了由储气库出口侧节流阀的控制实现的固定入口空气压力（定压）与变入口空气压力（滑压）等透平运行模式。针对AA-CAES型多能联供系统，文献\inlinecite{CAES-CCHP-off-design-18}引入了由储气库入口与出口节流阀的有无界定的四种运行模式。为实现更加通用的宽工况热力学特性建模，本文引入文献\inlinecite{CAES-Discharge-16,CAES-CCHP-off-design-18}中的运行模式概念。具体地，由末级压缩机出口空气压力与首级膨胀机入口空气压力是否（相对）恒定来界定如下四种运行模式：
 
-（1）常压—常压
+（1）定压—定压
 
- 常压—常压运行模式下，图~\ref{fig:CAES-thermal-struc}中入口侧及出口侧的节流阀均处于投入状态。储气库入口侧节流阀的入口空气压力为储气库的最大工作压力，背压为储气库实时压力；出口侧节流阀的入口压力为储气库实时压力，出口压力为储气库的最小工作压力。
+ 定压—定压运行模式下，图~\ref{fig:CAES-thermal-struc}中入口侧及出口侧的节流阀均处于投入状态。储气库入口侧节流阀的入口空气压力为储气库的最大工作压力，背压为储气库实时压力；出口侧节流阀的入口压力为储气库实时压力，出口压力为储气库的最小工作压力。
 
-（2）常压—滑压
+（2）定压—滑压
 
- 常压—滑压运行模式下，图~\ref{fig:CAES-thermal-struc}中入口侧节流阀处于投入状态，出口侧节流阀处于停滞状态。储气库入口侧节流阀的入口压力为储气库最大工作压力，背压为储气库实时压力；首级透平的入口空气压力为储气库实时压力，透平处于变压力运行方式。
+ 定压—滑压运行模式下，图~\ref{fig:CAES-thermal-struc}中入口侧节流阀处于投入状态，出口侧节流阀处于停滞状态。储气库入口侧节流阀的入口压力为储气库最大工作压力，背压为储气库实时压力；首级透平的入口空气压力为储气库实时压力，透平处于变压力运行方式。
 
-（3）滑压—常压
+（3）滑压—定压
 
-滑压—常压运行模式下，图~\ref{fig:CAES-thermal-struc}中储气库入口侧节流阀处于停滞状态，出口侧的节流阀处于投运状态。末级压缩机的出口压力为储气库实时压力，处于变压力运行方式；出口侧节流阀的入口压力为储气库实时压力，出口压力为储气库最小工作压力。
+滑压—定压运行模式下，图~\ref{fig:CAES-thermal-struc}中储气库入口侧节流阀处于停滞状态，出口侧的节流阀处于投运状态。末级压缩机的出口压力为储气库实时压力，处于变压力运行方式；出口侧节流阀的入口压力为储气库实时压力，出口压力为储气库最小工作压力。
 
 （4）滑压—滑压
 
@@ -143,7 +143,7 @@ T_{c,i}^{out} = \frac{1}{{{\eta _{c,i}}}}T_{c,i}^{in}({{{({{\beta _{c,i}}})}^{\f
 \end{equation}
 其中，$\eta _{c,i}$ 为压缩机等熵效率；$T_{c,i}^{in}$ 为压缩机入口空气温度；$k$ 为空气绝热指数，取值为1.4\footnote{更精确的计算可采用多变指数代替绝热指数$k$, 本文不予考虑。}；${\beta _{c,i}}$ 为压缩机压比。
 
-第$i$级压缩机实际耗功及所有压缩机总耗功分别为,
+第$i$级压缩机实际耗功(功率)及所有压缩机总耗功分别为
 \begin{subequations}
 \begin{gather}
 {W_{c,i}} = {\dot m_c}c_p^a({T_{c,i}^{out} - T_{c,i}^{in}})\label{equ:comp-power}\\
@@ -153,7 +153,7 @@ T_{c,i}^{out} = \frac{1}{{{\eta _{c,i}}}}T_{c,i}^{in}({{{({{\beta _{c,i}}})}^{\f
 其中， $\dot m_c$为压缩机空气质量流率；$N_c$ 为压缩机级数；$c_p^a$ 为空气的定压比热容\footnote{若需进行更精确的仿真，可采用焓值计算耗功
 \cite{Eng-Thermo-83}，即${W_{c,i}} = {\dot m_c}({h_{c,i}^{out} - h_{c,i}^{in}})$。}。
 
-第$i$级压缩机出口空气压力为，
+第$i$级压缩机出口空气压力为
 \begin{equation}
 \label{equ:comp-pressure}
 p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
@@ -172,7 +172,7 @@ p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
 \end{equation}
 其中，${\alpha _c}$ 为常数；${(\cdot)_0}$ 表示设计工况下的参数，后文相同。但该方法仅能给出等熵效率随压比变化的近似关系，难以揭示压缩机部分负载运行时非额定质量流率引起压比及等熵效率变化的物理本质。文献\inlinecite{Compressor-thermo-02}给出了部分负载运行工况下单轴燃气轮机中压缩机及透平的特性曲线的解析表达式，为仿真压缩机的部分负载运行特性提供了依据。文献\inlinecite{Compressor-Review-17}给出了压缩机特性参数的典型回归方法，可用于燃气轮机热力学仿真模型的构建。鉴于文献\inlinecite{Compressor-thermo-02}中的部分负载解析方法在填充床储热型AA-CAES的热力学特性分析\cite{A-CAES-Dynamic-17}、 低温储热型AA-CAES的㶲特性分析~\cite{CHS-CAES-off-19}、AA-CAES 型CCHP系统\cite{AA-CAES-Simulation-19}及其它诸多热力系统仿真中得到较多应用，本节引入文献\inlinecite{Compressor-thermo-02} 中的压缩机特性图的解析表达式来描述其部分负载特性。
 
-部分负载运行时压缩机的实际压比及实际等熵效率可分别表示为\cite{Compressor-thermo-02,A-CAES-Dynamic-17}，
+部分负载运行时压缩机的实际压比及实际等熵效率可分别表示为\cite{Compressor-thermo-02,A-CAES-Dynamic-17}
 \begin{subequations}
 \label{eq:com-iso-eff-off}
 \begin{gather}
@@ -180,7 +180,7 @@ p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
 \frac{{{\eta _{c,i}}}}{{{{({{\eta _{c,i}}})}_0}}} = [{1 - c{{({1 - {{\dot n}_{c,i}}})}^2}}]({{{\dot n}_{c,i}}/{{\dot G}_{c,i}}})({2 -({{{\dot n}_{c,i}}/{{\dot G}_{c,i}}})})\label{equ:comp-eff-part}
 \end{gather}
 \end{subequations}
-其中，($a_{1,i}$, $a_{2,i}$, $a_{3,i}$)为表征转速对压比影响的因子；${\dot G_{c,i}}$ 与 ${\dot n_{c,i}}$ 分别为无量纲降阶流率与降阶转速，满足
+其中，($a_{1,i}$, $a_{2,i}$, $a_{3,i}$)为表征转速对压比影响的因子；${\dot G_{c,i}}$ 与 ${\dot n_{c,i}}$ 分别为无量纲降阶流率与降阶转速，满足：
 \begin{subequations}
 \label{eq:com-mass-off}
 \begin{gather}
@@ -188,7 +188,7 @@ p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
 {\dot n_{c,i}} = [{{n_c}{{({T_{c,i}^{in}})}^{-0.5}}}]/{[{{n_c}{{({T_{c,i}^{in}})}^{-0.5}}}]_0}\label{equ:reduced-comp-speed}
 \end{gather}
 \end{subequations}
-其中，$n_c$为压缩机转速，对于采用变频调速等方式调节各级压缩机转速的实际系统，可修正(\ref{equ:reduced-comp-speed})中的$n_c$为$n_{c,i}$。定义中间变量，
+其中，$n_c$为压缩机转速，对于采用变频调速等方式调节各级压缩机转速的实际系统，可修正(\ref{equ:reduced-comp-speed})中的$n_c$为$n_{c,i}$。定义中间变量
 \begin{equation}
 \label{equ:comp-mid-var-1}
 {a_{0,i}} = [{{b_1}({1 - \frac{{{b_2}}}{{{{\dot n}_{c,i}}}}}) + {{\dot n}_{c,i}}{{({{{\dot n}_{c,i}} - {b_2}})}^2}}]
@@ -201,7 +201,7 @@ p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
 其中，($b_1$, $b_2$, $c$) 为常系数，其典型取值为(1.8, 1.4, 0.3)~\cite{Compressor-thermo-02}, (0.36, 1.06, 0.3)~\cite{A-CAES-Dynamic-17}, (1.8, 0.93,0.3)~\cite{AA-CAES-Simulation-19}或(1.7, 0.93, 0.4)~\cite{AA-CAES-Simulation-19}，对实际给定的压缩机可由其特性图进行拟合
 \cite{Compressor-Off-Design-05}，但需满足$b_1^{1/3}\le 2b_2/3$。
 
-基于部分负载解析模型(\ref{eq:com-iso-eff-off})-(\ref{equ:comp-mid-var-2})可得如图~\ref{fig:Comp-Ratio-off-design}~ 及图~\ref{fig:Eff-part-load}~所示的压缩机压比及等熵效率的典型曲线。如此，基于部分负载工况下的实际压比及实际等熵效率，在给定实际入口温度及实际入口压力的条件下即可获得第$i$ 级压缩机的实际耗功、实际出口温度、实际出口压力。
+基于部分负载解析模型(\ref{eq:com-iso-eff-off})-(\ref{equ:comp-mid-var-2})可得如图~\ref{fig:Comp-Ratio-off-design}~ 及图~\ref{fig:Eff-part-load}~所示的压缩机压比及等熵效率的典型曲线\cite{CAES-Wind-Rui-19}。如此，基于部分负载工况下的实际压比及实际等熵效率，在给定实际入口温度及实际入口压力的条件下即可获得第$i$ 级压缩机的实际耗功、实际出口温度、实际出口压力。
 
 \begin{figure}[H] % use float package if you want it here
   \centering
@@ -251,7 +251,7 @@ p_{c,i}^{out} = p_{c,i}^{in}{\beta _{c,i}}
 %T_{e,i}^{out,is} = T_{e,i}^{in}/{\left( {{\beta _{e,i}}} \right)^{\frac{{k - 1}}{k}}}
 %\end{equation}
 
-第$i$级膨胀机出口空气温度可由等熵效率计算\cite{Eng-Thermo-83}，
+第$i$级膨胀机出口空气温度可由等熵效率计算\cite{Eng-Thermo-83}，即
 % \begin{equation}
 %\label{equ:turb-real-temp-1}
 %{\eta _{c,i}} = \frac{{T_{c,i}^{out,is} - T_{c,i}^{in}}}{{T_{c,i}^{out} - T_{c,i}^{in}}}
@@ -264,7 +264,7 @@ T_{e,i}^{out} = T_{e,i}^{in}({1 - {\eta _{e,i}} + {\eta _{e,i}}{{({{\beta _{e,i}
 \end{equation}
 其中，$\eta _{e,i}$为透平等熵效率；$T_{e,i}^{in}$ 为透平入口空气温度；$\beta _{e,i}$ 为透平膨胀比。
 
-第$i$级膨胀机实际做功及所有膨胀机做的总功为，
+第$i$级膨胀机实际做功及所有膨胀机做的总功为
 \begin{subequations}
 \label{equ:turb-power-all}
 \begin{gather}
@@ -274,7 +274,7 @@ T_{e,i}^{out} = T_{e,i}^{in}({1 - {\eta _{e,i}} + {\eta _{e,i}}{{({{\beta _{e,i}
 \end{subequations}
 其中，$\dot m_e$为膨胀机空气质量流率；$N_e$ 为透平级数。
 
-第$i$级膨胀机实际出口空气压力为，
+第$i$级膨胀机实际出口空气压力为
 \begin{equation}
 \label{equ:turb-pressure}
 p_{e,i}^{out} = p_{e,i}^{in}/{\beta _{e,i}}
@@ -285,21 +285,21 @@ p_{e,i}^{out} = p_{e,i}^{in}/{\beta _{e,i}}
 
 \textbf{（2）部分负载特性解析模型}
 
-空气透平也存在类似于压缩机的部分负载运行特性，其等熵效率会随着运行工况发生大幅变化。在额定工况下透平的等熵效率可达85\%-90\%，而在50\%负载工况下等熵效率降至65\%-75\%\cite{CAES-Review-18-Rui-operation,CAES-Discharge-16}。 在膨胀释能过程中，随着储气压力的降低，储气室出口空气温度和压力均会变化~\footnote{一般认为，存在出口侧节流阀时仅入口温度会变化，不存在节流阀时入口温度与入口压力均会变化。}，从而引起透平的部分负载工况运行。为刻画等熵效率随部分负载运行工况（通常由质量流率及转速偏离额定工况引起）的变化特性，引入膨胀机的部分负载特性解析表达式。实际部分负载运行时等熵效率特性满足\cite{Compressor-thermo-02, AA-CAES-Simulation-19}，
+空气透平也存在类似于压缩机的部分负载运行特性，其等熵效率会随着运行工况发生大幅变化。在额定工况下透平的等熵效率可达85\%-90\%，而在50\%负载工况下等熵效率降至65\%-75\%\cite{CAES-Review-18-Rui-operation,CAES-Discharge-16}。 在膨胀释能过程中，随着储气压力的降低，储气室出口空气温度和压力均会变化~\footnote{一般认为，存在出口侧节流阀时仅入口温度会变化，不存在节流阀时入口温度与入口压力均会变化。}，从而引起透平的部分负载工况运行。为刻画等熵效率随部分负载运行工况（通常由质量流率及转速偏离额定工况引起）的变化特性，引入膨胀机的部分负载特性解析表达式。实际部分负载运行时等熵效率特性满足\cite{Compressor-thermo-02, AA-CAES-Simulation-19}:
 \begin{equation}
 \label{equ:turb-eff-part}
 {\eta _{e,i}}/{({{\eta _{e,i}}})_0} = [{1 - {b_0}{{({1 - {{\dot n}_{e,i}}})}^2}}]({{{\dot n}_{e,i}}/{{\dot G}_{e,i}}})({2 -({{{\dot n}_{e,i}}/{{\dot G}_{e,i}}})})
 \end{equation}
 其中，$b_0$为常数，典型取值为0.3\cite{Compressor-thermo-02}。
 
-由改进弗留格尔公式可知，无量纲节省（降阶）质量流率与降阶转速满足\cite{Compressor-thermo-02, AA-CAES-Simulation-19},
+由改进弗留格尔公式可知，无量纲节省（降阶）质量流率与降阶转速满足\cite{Compressor-thermo-02, AA-CAES-Simulation-19}:
 \begin{subequations}
 \begin{gather}
 {\dot G_{e,i}} = [{{{\dot m}_e}\frac{{{{({T_{e,i}^{in}})}^{0.5}}}}{{p_{e,i}^{in}}}}]/{[{{{\dot m}_e}\frac{{{{( {T_{e,i}^{in}})}^{0.5}}}}{{p_{e,i}^{in}}}}]_0} \label{equ:reduced-turb-mass-flow} \\
 {\dot n_{e,i}} = [{{n_{e,i}}{{({T_{e,i}^{in}})}^{ - 0.5}}}]/{[{{n_{e,i}}{{({T_{e,i}^{in}})}^{ - 0.5}}} ]_0}\label{equ:reduced-turb-speed}
 \end{gather}
 \end{subequations}
-透平实际膨胀比满足\cite{AA-CAES-Simulation-19}，
+同时，透平实际膨胀比满足\cite{AA-CAES-Simulation-19}:
 \begin{equation}
 \label{equ:turb-pressure-part}
 \frac{{{{\dot m}_e}}}{{{{({{{\dot m}_e}})}_0}}} = {\alpha _i}\sqrt {\frac{{{{({T_{e,i}^{in}})}_0}}}{{T_{e,i}^{in}}}} \sqrt {\frac{{\beta _{e,i}^2 - 1}}{{{{({\beta _{e,i}^2})}_0} - 1}}}
@@ -349,7 +349,7 @@ p_{e,i}^{out} = p_{e,i}^{in}/{\beta _{e,i}}
 对AA-CAES各应用形式而言，一般均含有压缩侧换热器与膨胀侧换热器等能量转移类模块，本小节分别给出二者在额定工况及部分负载工况下的稳态热力学模型。
 
 \subsubsection{压缩侧换热器}
-定义第$i$ 级换热器的空气侧入口温度为 $T_{c,HX,i}^{a,in}$ ，载热工质(Heat Transfer Fluid, HTF)的入口温度为$T_{c,HX,i}^{HTF,in}$，则换热器出口侧空气温度及HTF 温度分别为，
+定义第$i$ 级换热器的空气侧入口温度为 $T_{c,HX,i}^{a,in}$ ，载热工质(Heat Transfer Fluid, HTF)的入口温度为$T_{c,HX,i}^{HTF,in}$，则换热器出口侧空气温度及HTF 温度分别为\cite{CAES-Wind-Rui-19}
 \begin{subequations}
 \label{eq:he-comp-temp-out}
 \begin{gather}
@@ -358,14 +358,14 @@ T_{c,HX,i}^{HTF,out} = T_{c,HX,i}^{HTF,in} - \Phi _{c,i}^{HX}/({c_p^{HTF}\dot m_
 \Phi _{c,i}^{HX} = {\varepsilon _{c,i}}C_{c,i}^{\min }({T_{c,HX,i}^{HTF,in} - T_{c,HX,i}^{a,in}})\label{equ:he-comp-thermal}
 \end{gather}
 \end{subequations}
-其中，$\dot m_{c,i}^{HTF}$ 为HTF质量流率；$c_p^{HTF}$为HTF 定压比热容；$\Phi _{c,i}^{HX}$ 为换热器的换热功率；$C_{c,i}^{\min}$为换热器最小热容；${\varepsilon _{c,i}}$ 为换热器效能，具体表达式视实际换热器类型而定，图\ref{fig:CAES-thermal-struc}中压缩侧采用的逆流换热器的效能${\varepsilon _{c,i}}$ 满足\cite{Heat-mass-transfer-11}，
+其中，$\dot m_{c,i}^{HTF}$ 为HTF质量流率；$c_p^{HTF}$为HTF 定压比热容；$\Phi _{c,i}^{HX}$ 为换热器的换热功率；$C_{c,i}^{\min}$为换热器最小热容；${\varepsilon _{c,i}}$ 为换热器效能，具体表达式视实际换热器类型而定，图\ref{fig:CAES-thermal-struc}中压缩侧采用的逆流换热器的效能${\varepsilon _{c,i}}$ 满足\cite{Heat-mass-transfer-11}:
 \begin{subequations}
 \begin{gather}
 {\varepsilon _{c,i}} = \frac{{1 - \exp [{ - NT{U_{c,i}}({1 - C_{c,i}^{HX}})}]}}{{1 - C_{c,i}^{HX}\exp [{ - NT{U_{c,i}}({1 - C_{c,i}^{HX}})}]}}\label{equ:he-comp-eff-1}
 %{\varepsilon _{c,i}} = \frac{{1 - \exp \left[ { - NT{U_{c,i}}\left( {1 + C_{c,i}^{HX}} \right)} \right]}}{{1 + C_{c,i}^{HX}}}\label{equ:he-comp-eff-2}
 \end{gather}
 \end{subequations}
-其中，$NT{U_{c,i}}$ 与$C_{c,i}^{HX}$分别为换热器的传热单元数与热容比，满足\cite{Heat-mass-transfer-11}
+其中，$NT{U_{c,i}}$ 与$C_{c,i}^{HX}$分别为换热器的传热单元数与热容比，满足\cite{Heat-mass-transfer-11}：
 \begin{subequations}
 \begin{gather}
 NT{U_{c,i}} = U_{c,i}A_{c,i}/C_{c,i}^{\min }, C_{c,i}^{HX} = C_{c,i}^{\min }/C_{c,i}^{\max }\label{equ:he-comp-NTU-C}\\
@@ -375,13 +375,13 @@ C_{c,i}^{\max } = {({{{\dot m}_c}c_p^a,\dot m_{c,i}^{HTF}c_p^{HTF}})_{\max }}\la
 \end{subequations}
 其中，$C_{c,i}^{\max }$为换热器最大热容；$U_{c,i}$与$A_{c,i}$分别为换热系数与换热面积，不考虑部分负载特性时，$U_{c,i}$可视为常数。
 
-第$i$级换热器所需的HTF的质量流率满足，
+第$i$级换热器所需的HTF的质量流率满足:
 \begin{equation}
 \label{equ:he-comp-mass-flow}
 \dot m_{c,i}^{HTF} = \frac{{{{\dot m}_c}c_p^a({T_{c,HX,i}^{a,in} - T_{c,HX,i}^{a,out}} )}}{{c_p^{HTF}( {T_{c,HX,i}^{HTF,out} - T_{c,HX,i}^{HTF,in}})}}
 \end{equation}
 
-考虑换热器的压损特性，则换热器出口的空气压力为，
+考虑换热器的压损特性，则换热器出口的空气压力为
 \begin{subequations}
 \begin{gather}
 p_{c,HX,i}^{out} = \eta _{c,HX,i}^pp_{c,HX,i}^{in}\label{equ:he-comp-pressure-out}
@@ -431,7 +431,7 @@ T_{c,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_c}} {\dot m_{c,HX,i}^{HTF}T_{c,HX,i
 \end{table}
 
 \subsubsection{膨胀侧换热器}
-定义第$i$ 级换热器的空气侧入口温度为 $T_{e,HX,i}^{a,in}$ ，HTF的入口温度为$T_{e,HX,i}^{HTF,in}$，则换热器出口侧空气温度及HTF温度分别为，
+定义第$i$ 级换热器的空气侧入口温度为 $T_{e,HX,i}^{a,in}$ ，HTF的入口温度为$T_{e,HX,i}^{HTF,in}$，则换热器出口侧空气温度及HTF温度分别为
 \begin{subequations}
 \label{eq:he-turb-temp-out}
 \begin{gather}
@@ -441,14 +441,14 @@ T_{e,HX,i}^{HTF,out} = T_{e,HX,i}^{HTF,in} - \Phi _{e,i}^{HX}/({c_p^{HTF}\dot m_
 \end{gather}
 \end{subequations}
 其中，$\dot m_{e,i}^{HTF}$为膨胀侧第$i$级换热器的质量流率；$\Phi _{e,i}^{HX}$ 为换热器实际换热功率；${\varepsilon _{e,i}}$ 为换热器效能，对于图
-\ref{fig:CAES-thermal-struc}中膨胀侧采用的逆流换热器，其效能为\cite{Heat-mass-transfer-11}，
+\ref{fig:CAES-thermal-struc}中膨胀侧采用的逆流换热器，其效能为\cite{Heat-mass-transfer-11}
 \begin{subequations}
 \begin{gather}
 {\varepsilon _{e,i}} = \frac{{1 - \exp [{- NT{U_{e,i}}({1 - C_{e,i}^{HX}})}]}}{{1 - C_{e,i}^{HX}\exp [{- NT{U_{e,i}}({1 - C_{e,i}^{HX}})}]}}\label{equ:he-eff-1}
 %{\varepsilon _{e,i}} = \frac{{1 - \exp \left[ { - NT{U_{e,i}}\left( {1 + C_{e,i}^{HX}} \right)} \right]}}{{1 + C_{e,i}^{HX}}}\label{equ:he-turb-eff-2}
 \end{gather}
 \end{subequations}
-其中，除下标$e$表示膨胀侧外，$NT{U_{e,i}}$ 与$C_{e,i}^{HX}$的含义与压缩侧换热器相同，且满足
+其中，除下标$e$表示膨胀侧外，$NT{U_{e,i}}$ 与$C_{e,i}^{HX}$的含义与压缩侧换热器相同，且满足:
 \begin{subequations}
 \begin{gather}
 NT{U_{e,i}} = U_{e,i}A_{e,i}/C_{e,i}^{\min }, C_{e,i}^{HX} = C_{e,i}^{\min }/C_{e,i}^{\max }\label{equ:he-turb-NTU-C}\\
@@ -458,13 +458,13 @@ C_{e,i}^{\max } = {({{{\dot m}_e}c_p^a,\dot m_{e,i}^{HTF}c_p^{HTF}})_{\max }}\la
 \end{subequations}
 其中， $C_{e,i}^{\max }$与$C_{e,i}^{\min }$的含义同压缩侧。
 
-第$i$级换热器所需的换热介质的质量流率满足，
+第$i$级换热器所需的换热介质的质量流率满足:
 \begin{equation}
 \label{equ:he-turb-mass-flow}
 \dot m_{e,i}^{HTF} = \frac{{{{\dot m}_e}c_p^a({T_{e,HX,i}^{a,in} - T_{e,HX,i}^{a,out}})}}{{c_p^{HTF}({T_{e,HX,i}^{HTF,out} - T_{e,HX,i}^{HTF,in}})}}
 \end{equation}
 
-与压缩侧换热器类似，引入换热器压力保持系数\cite{Thesis-Lixuemei}后换热器的出口空气压力为，
+与压缩侧换热器类似，引入换热器压力保持系数\cite{Thesis-Lixuemei}后换热器的出口空气压力为
 \begin{subequations}
 \begin{gather}
 %\eta _{e,HX,i}^p = 1 - \frac{{0.0083{\varepsilon _{e,i}}}}{{1 - {\varepsilon _{e,i}}}}\label{equ:he-turb-pressure-discount}\\
@@ -472,7 +472,7 @@ p_{e,HX,i}^{out} = \eta _{e,HX,i}^pp_{e,HX,i}^{in}\label{equ:he-turb-pressure-ou
 \end{gather}
 \end{subequations}
 
-此外，膨胀侧各级换热器汇合后的HTF质量流率及温度分别为，
+此外，膨胀侧各级换热器汇合后的HTF质量流率及温度分别为
 \begin{subequations}
 \begin{gather}
 \dot m_e^{HTF} = \sum\limits_{i = 1}^{{N_e}} {\dot m_{e,i}^{HTF}} \label{equ:he-turb-mix-mass-flow}\\
@@ -515,7 +515,7 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
 本章针对常用的回热式双罐液态储热方式建立动态模型，该类储热方式已在我国多座AA-CAES试验系统中普遍使用，如TICC-500\cite{TICC-15}、STHC-100\cite{ST-CAES-17}以及江苏金坛AA-CAES国家示范电站\cite{CAES-Review-17-Rui-salt}，同时也在集中式光热电站技术中广泛使用\cite{TES-CSP-review-13}。对于填充层储热结构，可采用文献~\inlinecite{A-CAES-Dynamic-17} 中的动态模型；对于蓄热式混凝土储热罐动态结构，可采用文献~\inlinecite{Model-AA-CAES-10} 中的动态模型；对于相变材料储热，其动态模型可参考文献~\inlinecite{AA-CAES-Simulation-19}。
 
 %\subsubsection{双罐回热结构}
-对于图~\ref{fig:CAES-thermal-struc}中所采用的双罐回热储热结构，低温储热罐一般通过与外界充分散热保持恒温，可视为等温；高温储热罐需尽可能减少传热损失，则高温储热罐中储热介质的温度满足，
+对于图~\ref{fig:CAES-thermal-struc}中所采用的双罐回热储热结构，低温储热罐一般通过与外界充分散热保持恒温，可视为等温；高温储热罐需尽可能减少传热损失，则高温储热罐中储热介质的温度满足\cite{CAES-Wind-Rui-19}:
 %其储热模型可建立如下：
 %\subsubsection{蓄热式储热结构}
 %本章先探讨蓄热式混凝土储热罐动态模型，建模思路可推广至其他类型的储热系统的建模过程。考虑文献~\inlin%ecite{Model-AA-CAES-10}中的带沉浸式换热器线圈的储热系统，如图~\ref{fig:TES-struc-2}~所示。
@@ -540,7 +540,7 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
 
 \textbf{（1）通用定容模型}
 
-通用定容模型（记为G模型）假定储气库内空气的温度与压力均随压缩储能及膨胀释能过程变化，同时计及储气库与周围环境的换热过程。如此，通用定容储气库的热力学动态模型为\cite{Model-AA-CAES-10,Cavern-model-12}，
+通用定容模型（记为G模型）假定储气库内空气的温度与压力均随压缩储能及膨胀释能过程变化，同时计及储气库与周围环境的换热过程。如此，通用定容储气库的热力学动态模型为\cite{Model-AA-CAES-10,Cavern-model-12,CAES-Wind-Rui-19}
 \begin{subequations}
 \label{equ:Air-tank-model-G}
 \begin{gather}
@@ -549,17 +549,17 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
    \frac{{d{p_{as}}}}{{dt}} = \frac{{k{R_g}}}{{{V_{as}}}}({\dot m_{as}^{in}T_{as}^{in} - \dot m_{as}^{out}T_{as}^{}}) + \frac{{{R_g}}}{{c_v^a{V_{as}}}}{\alpha _w}{A_w}({{T_w} - {T_{as}}} )\label{equ:Air-tank-model-G-P}
 \end{gather}
 \end{subequations}
-其中，${m_{as}}$ 为储气库中的高压空气质量；$\dot m_{as}^{in}$ 与$\dot m_{as}^{out}$分别为储气库的进口空气质量流率与出口空气质量流率；$T_{as}^{in}$与 $T_{as}$ 分别为储气库的进口空气温度与出口空气温度（或储气库的实时空气温度）；${A_w}$ 为储气库与周围环境的接触面积； ${T_w}$ 为储气库壁面温度，可采用一维热传导方程求解；$p_{as}(t)$为储气库空气压力；$R_g$为通用气体常数；${\alpha _w}$ 为储气库外表面与环境间的传热系数，其值与储气库的特性有关，如文献~\inlinecite{CAES-Huntorf-12}基于实测Huntorf 电站数据仿真拟合得到了适用于地下盐穴储气库的可变传热系数，
+其中，${m_{as}}$ 为储气库中的高压空气质量；$\dot m_{as}^{in}$ 与$\dot m_{as}^{out}$分别为储气库的进口空气质量流率与出口空气质量流率；$T_{as}^{in}$与 $T_{as}$ 分别为储气库的进口空气温度与出口空气温度（或储气库的实时空气温度）；${A_w}$ 为储气库与周围环境的接触面积； ${T_w}$ 为储气库壁面温度，可采用一维热传导方程求解；$p_{as}(t)$为储气库空气压力；$R_g$为通用气体常数；${\alpha _w}$ 为储气库外表面与环境间的传热系数，其值与储气库的特性有关，如文献~\inlinecite{CAES-Huntorf-12}基于实测Huntorf 电站数据仿真拟合得到了适用于地下盐穴储气库的可变传热系数:
 \begin{equation}
 \label{equ:wall-thermal-coef}
 {\alpha _w} = 0.02356 + 0.0149{\left| {\dot m_{as}^{in} - \dot m_{as}^{out}} \right|^{0.8}}
 \end{equation}
 
-事实上，储气库内空气的实时压力$p_{as}$亦可基于空气温度$T_{as}$和质量$m_{as}$，并结合理想气体状态方程求解，即(\ref{equ:Air-tank-model-G}) 存在冗余项。为了描述壁面换热对储气库内空气的热力学特性（温度及压力）的影响，此处给出了二者的具体表达式。从温度动态方程(\ref{equ:Air-tank-model-G-T})及压力动态方程(\ref{equ:Air-tank-model-G-P})可知，储气库（出口）空气温度受进出口空气质量流率及储气库与周围环境的传热过程共同影响，在较大质量流率充气与放气过程中，前者对储气库内空气温度与压力的变化影响较大；在较小质量流率充放气过程中，如压缩机与膨胀机部分负载运行时，储气库与周围环境的传热过程对储气库内空气温度与压力的变化贡献较大，这一现象已在基于盐穴储气的Huntorf D-CAES电站实际运行中得到验证\cite{Huntorf-20-01}。 因此，在研究AA-CAES宽工况热力学仿真模型时，通用储气库模型应考虑储气库与周围环境的传热过程。
+事实上，储气库内空气的实时压力$p_{as}$亦可基于空气温度$T_{as}$和质量$m_{as}$，并结合理想气体状态方程求解，即(\ref{equ:Air-tank-model-G}) 存在冗余项。为了描述壁面换热对储气库内空气的热力学特性（温度及压力）的影响，此处给出了二者的具体表达式。从温度动态方程(\ref{equ:Air-tank-model-G-T})及压力动态方程(\ref{equ:Air-tank-model-G-P})可知，储气库（出口）空气温度受进出口空气质量流率及储气库与周围环境的传热过程共同影响，在较大质量流率充气与放气过程中，前者对储气库内空气温度与压力的变化影响较大；在较小质量流率充放气过程中，如压缩机与膨胀机部分负载运行时，储气库与周围环境的传热过程对储气库内空气温度与压力的变化贡献较大\cite{CAES-Wind-Rui-19}，这一现象已在基于盐穴储气的Huntorf D-CAES电站实际运行中得到验证\cite{Huntorf-20-01}。 因此，在研究AA-CAES宽工况热力学仿真模型时，通用储气库模型应考虑储气库与周围环境的传热过程。
 
 \textbf{（2）定容等温与绝热模型}
 
-对于非地下盐穴储气等其它小型储气方式而言，储气罐（库）与罐（库）壁的传热损失并不明显，或可通过易于实现的保温、绝热等方式加以控制，此时可在通用定容模型的基础上，进一步简化得到定容等温模型与定容绝热模型。定容等温模型（记为VT模型）假设储气库内空气的温度不随时间变化，从而储气库G模型退化为，
+对于非地下盐穴储气等其它小型储气方式而言，储气罐（库）与罐（库）壁的传热损失并不明显，或可通过易于实现的保温、绝热等方式加以控制，此时可在通用定容模型的基础上，进一步简化得到定容等温模型与定容绝热模型。定容等温模型（记为VT模型）假设储气库内空气的温度不随时间变化，从而储气库G模型退化为
 \begin{subequations}
 \label{equ:Air-tank-model-VT}
 \begin{gather}
@@ -569,7 +569,7 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
 \end{gather}
 \end{subequations}
 
-类似地，定容绝热储气库模型（记为VA模型）可表示为，
+类似地，定容绝热储气库模型（记为VA模型）可表示为
 \begin{subequations}
 \label{equ:Air-tank-model-VA}
 \begin{gather}
@@ -582,7 +582,7 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
 
 \textbf{（3） 储气库壁面温度求解}
 
-通用定容储气库模型(\ref{equ:Air-tank-model-G})中，$T_{as}$ 及$p_{as}$的求解需要获取墙壁温度$T_w$。$T_w$随储气库内高压空气温度的不同而变化，具体可通过求解一维热传导方程获得\cite{Heat-mass-transfer-11}。如图~\ref{fig:cavern-wall-temp} 所示，定义储气库与墙壁周边任一截面上的温度为$T_{rs}$，由一维热传导方程可得任一时刻任一位置处的温度为~\cite{Heat-mass-transfer-11,Model-AA-CAES-10,Cavern-wall-09}，
+通用定容储气库模型(\ref{equ:Air-tank-model-G})中，$T_{as}$ 及$p_{as}$的求解需要获取墙壁温度$T_w$。$T_w$随储气库内高压空气温度的不同而变化，具体可通过求解一维热传导方程获得\cite{Heat-mass-transfer-11}。如图~\ref{fig:cavern-wall-temp} 所示，定义储气库与墙壁周边任一截面上的温度为$T_{rs}$，由一维热传导方程可得任一时刻任一位置处的温度为~\cite{Heat-mass-transfer-11,Model-AA-CAES-10,Cavern-wall-09}
 \begin{equation}
 \label{eq:wall-temp}
 \frac{{\partial {T_{rs}}\left( {t,r} \right)}}{{\partial t}} = {r_{rs}}({\frac{{{\partial ^2}{T_{rs}}}}{{\partial {r^2}}} + \frac{1}{r}\frac{{\partial {T_{rs}}}}{{\partial r}}})
@@ -596,7 +596,7 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
   \label{fig:cavern-wall-temp}
 \end{figure}
 
-通过求解热传导方程(\ref{eq:wall-temp})的空间离散化方程组（具体求解过程参见附录~\ref{cha:air-wall-temp-exp}），可获取洞穴壁的温度，
+通过求解热传导方程(\ref{eq:wall-temp})的空间离散化方程组（具体求解过程参见附录~\ref{cha:air-wall-temp-exp}），可获取洞穴壁的温度为
 \begin{equation}
 {T_w}(t) = \frac{{{T_{rs,1}}(t) + {T_{rs,0}}(t)}}{2} = \frac{{{T_{sc,a}}}}{{2({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}} + {T_{rs,1}}({1 - \frac{1}{{({\frac{1}{{B{i^ + }}} + \frac{1}{2}})}}})
 \end{equation}
@@ -625,13 +625,13 @@ T_{e,HX}^{Merge} = {{\sum\limits_{i = 1}^{{N_e}} {\dot m_{e,HX,i}^{HTF}T_{e,HX,i
 
 AA-CAES四种运行模式的确定可由运行模式控制模块，即储气库入口侧的节流阀及储气库出口侧的节流阀来控制，本小节给出其热力学模型。
 
-一般而言，绝热节流是等焓过程~\cite{Eng-Thermo-83}，节流前后空气质量流率相同，温度相同，只有压力不同。因此，流经储气库入口侧节流阀（Throttle Valve, TV）模块的空气满足，
+一般而言，绝热节流是等焓过程~\cite{Eng-Thermo-83}，节流前后空气质量流率相同，温度相同，只有压力不同。因此，流经储气库入口侧节流阀（Throttle Valve, TV）模块的空气满足:
 \begin{equation}
     \dot m_{c,TV}^{in} = \dot m_{c,TV}^{out}, T_{c,TV}^{in} = T_{c,TV}^{out}
 \end{equation}
 节流前后空气的压力由其它边界条件确定。
 
-类似地，流经储气库出口侧的节流阀模块的空气满足，
+类似地，流经储气库出口侧的节流阀模块的空气满足:
 \begin{equation}
     \dot m_{e,TV}^{in} = \dot m_{e,TV}^{out}, T_{e,TV}^{in} = T_{e,TV}^{out}
 \end{equation}
@@ -671,7 +671,7 @@ p_{c,HX,i}^{a,in} = p_{c,i}^{out},p_{c,HX,i}^{a,out} = p_{c,i + 1}^{in},\;\foral
 \end{gather}
 \end{subequations}
 
-整个压缩侧经过各级压缩机、换热器及节流阀的空气质量流率相同。同时，末级压缩机($i=N_c$)的出口空气压力与温度分别为末级换热器的入口空气压力与温度，末级换热器的出口空气压力与温度则视AA-CAES压缩侧运行模式而不同。具体为：1）压缩侧常压运行模式下，
+整个压缩侧经过各级压缩机、换热器及节流阀的空气质量流率相同。同时，末级压缩机($i=N_c$)的出口空气压力与温度分别为末级换热器的入口空气压力与温度，末级换热器的出口空气压力与温度则视AA-CAES压缩侧运行模式而不同。具体为：1）压缩侧定压运行模式下
 \begin{subequations}
 \begin{gather}
 \dot m_{c,TV}^{in} = {{\dot m}_c},\dot m_{c,TV}^{out} = \dot m_{as}^{in}\\
@@ -679,7 +679,7 @@ T_{c,HX,i}^{a,in} = T_{c,i}^{out},T_{c,HX,i}^{a,out} = T_{c,TV}^{in},T_{c,TV}^{o
 p_{c,HX,i}^{a,in} = p_{c,i}^{out},p_{c,HX,i}^{a,out} = p_{as}^{\max },\;p_{c,TV}^{in} = p_{as}^{\max },p_{c,TV}^{out} = p_{as}^{},i = {N_c}
 \end{gather}
 \end{subequations}
-2）压缩侧滑压模式下，
+2）压缩侧滑压模式下
 \begin{subequations}
 \begin{gather}
 {{\dot m}_c} = \dot m_{as}^{in}\\
@@ -708,7 +708,7 @@ p_{e,HX,i}^{a,out} = p_{e,i}^{in},p_{e,HX,i}^{a,in} = p_{e,i + 1}^{out},\;\foral
 \end{gather}
 \end{subequations}
 
-整个膨胀侧流经节流阀、各级换热器、膨胀机的空气质量流率相同。同时，首级膨胀机的入口空气压力与温度分别为首级换热器的出口空气压力与温度，首级换热器的入口空气压力与温度则视AA-CAES膨胀侧运行模式而不同。具体地：1）膨胀侧常压运行模式下，
+整个膨胀侧流经节流阀、各级换热器、膨胀机的空气质量流率相同。同时，首级膨胀机的入口空气压力与温度分别为首级换热器的出口空气压力与温度，首级换热器的入口空气压力与温度则视AA-CAES膨胀侧运行模式而不同。具体地：1）膨胀侧定压运行模式下
 \begin{subequations}
 \begin{gather}
 \dot m_{e,TV}^{out} = {{\dot m}_e},\dot m_{e,TV}^{in} = \dot m_{as}^{out}\\
@@ -716,7 +716,7 @@ T_{e,HX,i}^{a,out} = T_{e,i}^{in},T_{e,HX,i}^{a,in} = T_{e,TV}^{out},T_{e,TV}^{i
 p_{e,HX,i}^{a,out} = p_{e,i}^{in},p_{e,HX,i}^{a,in} = p_{as}^{\min },\;p_{e,TV}^{out} = p_{as}^{\min },p_{e,TV}^{in} = p_{as}^{},i = 1
 \end{gather}
 \end{subequations}
-2）膨胀侧滑压运行模式下，
+2）膨胀侧滑压运行模式下
 \begin{subequations}
 \begin{gather}
 {{\dot m}_e} = \dot m_{as}^{out}\\
@@ -741,7 +741,7 @@ T_{e,HX}^{HTF,Merge} = T_{cool}^{HTF}
 %本章一定要考虑电动机与发电机的效率，为直接实现第5章机械转矩或机械功的输入或输出建模埋下伏笔与奠定基础。
 基于组件级的部分负载热力学模型，可构建AA-CAES系统级的通用宽工况热力学仿真模型，具体包括压缩机、空气透平及换热器的部分负载热力学模型，储热罐与储气库的热力学动态模型，节流阀模型及受控于AA-CAES运行方式的边界条件。
 
-为了分析AA-CAES系统级的性能，定义电效率、热效率及总能利用系数分别为，
+为了分析AA-CAES系统级的性能，定义电效率、热效率及总能利用系数分别为
 \begin{equation}
 %{\eta _{work}} = \frac{{{\int_0^{t_{dis}}W_e}}}{{{\int_0^{t_{ch}}W_c}}}, {\eta _{hot}} = \frac{{Q_H^L}}{{\int_0^{t_{ch}}{W_c}}}, {\eta _{cool}} = \frac{{Q_C^L}}{{{\int_0^{t_{ch}}W_c}}}
 {\eta _{elec}} = \frac{{\int_0^{{t_{dis}}} {{W_e}dt}}}{{{\int_0^{{t_{ch}}} {{W_c}dt}}}}, {\eta _{heat}} = \frac{{Q_H^L}}{{{\int_0^{{t_{ch}}} {{W_c}dt}}}}, {\eta _{total}} = {\eta _{elec}} + {\eta _{heat}}
@@ -759,7 +759,7 @@ AA-CAES具有典型的多能流耦合特性，主要表现为对内的空气压�
 \ref{fig:CAES-thermal-struc} 中标注的状态点1-12 及$1^*$-$14^*$）的流率、压力、温度等参数，并基于此通过查询工质（空气、HTF等）的热物性表\footnote{热物性表可利用NIST的REFPROP获取，具体可参见https://www.nist.gov/srd/refprop}，即可得到对应状态点下的焓值及熵值~\cite{Eng-Thermo-83}，进而可建立AA-CAES的㶲平衡模型。
 
 \subsection{压缩机㶲模型}
-压缩机的输入㶲为消耗的压缩功，输出㶲为入口与进口空气焓㶲差。如此，第$i$级压缩机的输入㶲与输出㶲分别为\cite{Eng-Thermo-83}，
+压缩机的输入㶲为消耗的压缩功，输出㶲为入口与进口空气焓㶲差。如此，第$i$级压缩机的输入㶲与输出㶲分别为\cite{Eng-Thermo-83}
 \begin{subequations}
 \label{eq:exergy-compressor}
 \begin{gather}
@@ -768,14 +768,14 @@ Ex_{c,i}^{out} = {\dot m_c}[ {c_p^a\left( {T_{c,i}^{out} - T_{c,i}^{in}} \right)
 \end{gather}
 \end{subequations}
 
-相应地，第$i$级压缩机的㶲损为，
+相应地，第$i$级压缩机的㶲损为
 \begin{equation}
 \label{equ:comp-exergy-loss}
 L{x_{c,i}} = Ex_{c,i}^{in} - Ex_{c,i}^{out}
 \end{equation}
 
 \subsection{空气透平㶲模型}
-透平的输入㶲由空气提供，输出㶲为输出功。如此，进入第$i$级空气透平的输入㶲与输出㶲分别为\cite{Eng-Thermo-83}，
+透平的输入㶲由空气提供，输出㶲为输出功。如此，进入第$i$级空气透平的输入㶲与输出㶲分别为\cite{Eng-Thermo-83}
 \begin{subequations}
 \begin{gather}
 Ex_{e,i}^{in} = {\dot m_e}[ {c_p^a( {T_{e,i}^{in} - T_{e,i}^{out}}) - {T_0}({c_p^a\ln \frac{{T_{e,i}^{in}}}{{T_{e,i}^{out}}} - {R_g}\ln \frac{{p_{e,i}^{in}}}{{p_{e,i}^{out}}}})}]\label{equ:turb-exergy-in}\\
@@ -783,7 +783,7 @@ Ex_{e,i}^{out} = {W_{e,i}}\label{equ:turb-exergy-out}
 \end{gather}
 \end{subequations}
 
-相应地，第$i$级膨胀机的㶲损为，
+相应地，第$i$级膨胀机的㶲损为
 \begin{equation}
 \label{equ:turb-exergy-loss}
 L{x_{e,i}} = Ex_{e,i}^{in} - Ex_{e,i}^{out}
@@ -793,7 +793,7 @@ L{x_{e,i}} = Ex_{e,i}^{in} - Ex_{e,i}^{out}
 
 \textbf{（1）压缩侧换热器}
 
-压缩侧换热器的输入㶲由高温空气提供，输出㶲由载热流体带走。如此，进入第$i$级换热器的㶲为，
+压缩侧换热器的输入㶲由高温空气提供，输出㶲由载热流体带走。如此，进入第$i$级换热器的㶲为
 \begin{equation}
 \label{equ:he-comp-exergy-in}
 Ex_{HX,i}^{c,in} = {\dot m_c}[ {c_p^a({T_{HX,i}^{a,in} - T_{HX,i}^{a,out}}) - {T_0}c_p^a\ln \frac{{T_{HX,i}^{a,in}}}{{T_{HX,i}^{a,out}}}}]
@@ -806,7 +806,7 @@ Ex_{HX,i}^{c,out} = \dot m_{c,i}^{HTF}\left[ {({h_{HX,i}^{HTF,out} - h_{HX,i}^{H
 \end{equation}
 其中，$h_{HX,i}^{HTF,in}$与$s_{HX,i}^{HTF,in}$分别为换热器HTF侧的入口焓与熵；$h_{HX,i}^{HTF,out}$与$s_{HX,i}^{HTF,out}$分别为出口焓与熵；$h_{0}^{HTF}$与$s_{0}^{HTF}$分别为参考点的焓与熵\footnote{一般而言，AA-CAES系统中空气、HTF等稳流工质的㶲均需由焓($h$)与熵($s$) 计算。由于本文假设空气为理想气体，其$h$, $s$ 均为温度的单变量函数，故采用温度表示了空气的熵与焓，如(\ref{equ:he-comp-exergy-in}); 而HTF由于种类多，具体类型视特定系统而定，可采用加压水、导热油、熔融盐等，一般不是理想工质，故直接用$h$ 与$s$表示，如(\ref{equ:he-comp-exergy-out})。}。
 
-相应地，第$i$级换热器的㶲损为，
+相应地，第$i$级换热器的㶲损为
 \label{equ:he-comp-exergy-loss}
 \begin{equation}
 Lx_{HX,i}^c = Ex_{HX,i}^{c,in} - Ex_{HX,i}^{c,out}
@@ -814,7 +814,7 @@ Lx_{HX,i}^c = Ex_{HX,i}^{c,in} - Ex_{HX,i}^{c,out}
 
 \textbf{（2）膨胀侧换热器}
 
-与压缩侧换热器相反，膨胀侧换热器的输入㶲由高温HTF提供，输出㶲由空气带走。如此，流入第$i$级换热器的输入㶲为，
+与压缩侧换热器相反，膨胀侧换热器的输入㶲由高温HTF提供，输出㶲由空气带走。如此，流入第$i$级换热器的输入㶲为
 \begin{equation}
 \label{equ:he-turb-exergy-in}
 Ex_{HX,i}^{e,in} = \dot m_{e,i}^{HTF}\left[{({h_{HX,e,i}^{HTF,in} - h_{HX,e,i}^{HTF,out}}) - {T_0}({s_{HX,e,i}^{HTF,in} - s_{HX,e,i}^{HTF,out}})}\right]
@@ -827,14 +827,14 @@ Ex_{HX,i}^{e,in} = \dot m_{e,i}^{HTF}\left[{({h_{HX,e,i}^{HTF,in} - h_{HX,e,i}^{
 Ex_{HX,i}^{e,out} = {\dot m_{e,i}}[ {c_p^a({T_{HX,i}^{a,e,out} - T_{HX,i}^{a,e,in}}) - {T_0}c_p^a\ln \frac{{T_{HX,i}^{a,e,out}}}{{T_{HX,i}^{a,e,in}}}}]
 \end{equation}
 
-相应地，第$i$级换热器的㶲损为，
+相应地，第$i$级换热器的㶲损为
 \begin{equation}
 \label{equ:he-turb-exergy-loss}
 Lx_{HX,i}^e = Ex_{HX,i}^{e,in} - Ex_{HX,i}^{e,out}
 \end{equation}
 
 \subsection{节流阀㶲模型}
- 节流阀的输入㶲为入口空气的㶲，输出㶲为出口空气的㶲。对于入口侧节流阀而言，输入㶲为末级换热器的出口空气㶲，输出㶲为进入储气库前的高压空气的焓㶲。因此，储气库入口侧及出口侧节流阀的㶲损分别为，
+ 节流阀的输入㶲为入口空气的㶲，输出㶲为出口空气的㶲。对于入口侧节流阀而言，输入㶲为末级换热器的出口空气㶲，输出㶲为进入储气库前的高压空气的焓㶲。因此，储气库入口侧及出口侧节流阀的㶲损分别为
 \begin{subequations}
 \label{eq:exergy-TV}
 \begin{gather}
@@ -854,7 +854,7 @@ Lx_{TV}^e = Ex_{e,TV}^{in} - Ex_{e,TV}^{out} \label{equ:throttle-valve-turb-exer
 \subsection{㶲效率指标}
 基于热力学第一定律的性能指标可以反映系统内的能量转换情况，但其将功与热等同对待，导致该类效率评价指标只能反映系统能量利用的数量关系，不能反映其在能量利用品位上的不同，难以应用于AA-CAES多能联供应用场景的分析。为此，定义基于热力学第二定律的㶲效率指标以分析系统性能。
 
-基于㶲的电效率、热效率及总㶲效率分别为，
+基于㶲的电效率、热效率及总㶲效率分别为
 \begin{equation}
 {\eta _{x,elec}} = \frac{{\int_0^{{t_{dis}}} {Ex_e^{out}dt} }}{{\int_0^{{t_{ch}}} {Ex_c^{in}dt} }},{\eta _{x,heat}} = \frac{{Ex_H^L}}{{\int_0^{{t_{ch}}} {Ex_c^{in}dt} }}, {\eta _x} = {\eta _{x,elec}} + {\eta _{x,heat}}
 \end{equation}
@@ -893,7 +893,7 @@ Lx_{TV}^e = Ex_{e,TV}^{in} - Ex_{e,TV}^{out} \label{equ:throttle-valve-turb-exer
 图\ref{fig:CAES-thermal-struc}给出了两级压缩两级膨胀的AA-CAES结构，尽管如此，本章的分析方法适用于任何多级压缩多级膨胀的AA-CAES系统的稳态热力学特性分析。本节基于所建的热力学稳态仿真模型分析一典型的小型AA-CAES系统的运行特性，该系统中的压缩机、膨胀机、换热器等组件的热力学设计参数分别见表
 \ref{tab:TICC-500-para-comp} 至表\ref{tab:TICC-500-para-he-turb}，相关数据基于文献~\inlinecite{Thesis-Wangsixian,Thesis-Zhangxuelin}改编而来。
 
-我们假定采用文献\inlinecite{TICC-15}中的五级压缩三级膨胀结构，储气库无入口侧节流阀，但有出口侧节流阀，即AA-CAES运行于滑压-常压模式。同时，系统采用加压水作为HTF，相应的储热系统采用低温双罐储热结构。
+我们假定采用文献\inlinecite{TICC-15}中的五级压缩三级膨胀结构，储气库无入口侧节流阀，但有出口侧节流阀，即AA-CAES运行于滑压-定压模式。同时，系统采用加压水作为HTF，相应的储热系统采用低温双罐储热结构。
 
 %该系统参数常被用于AA-CAES相关研究的基准数据，如文献~\inlinecite{Variable-Conf-18,TICC-16}。
 
@@ -971,7 +971,7 @@ Lx_{TV}^e = Ex_{e,TV}^{in} - Ex_{e,TV}^{out} \label{equ:throttle-valve-turb-exer
 
 \subsection{设计工况性能}
 \label{sec:chap2-model-valid-Thermoflex}
-额定设计点的运行性能分析旨在说明AA-CAES内部各组件运行特性之间的相互影响，我们重点分析AA-CAES在滑压-常压运行模式下能量转换类组件（压缩机、膨胀机）及能量转移类组件（换热器）的运行特性与能量存储类组件（储气库及储热罐）的动态特性之间的耦合关系。
+额定设计点的运行性能分析旨在说明AA-CAES内部各组件运行特性之间的相互影响，我们重点分析AA-CAES在滑压-定压运行模式下能量转换类组件（压缩机、膨胀机）及能量转移类组件（换热器）的运行特性与能量存储类组件（储气库及储热罐）的动态特性之间的耦合关系。
 
 \subsubsection{压缩储能过程}
 我们设定储气库的运行压力范围为4MPa-10MPa，储气库的体积取为100 m$^2$（与文献\inlinecite{TICC-15}中的实际电站一致）。压缩储能过程以压缩机的额定质量流率(0.4492kg/s)进行压缩储能，在给定的压缩侧滑压运行模式下，压缩储能过程的总时间为2.9h，各级压缩机的出口空气压力的变化过程如图
@@ -1026,8 +1026,8 @@ Lx_{TV}^e = Ex_{e,TV}^{in} - Ex_{e,TV}^{out} \label{equ:throttle-valve-turb-exer
 %需要说明的是，就整个AA-CAES对外特性而言，压缩侧处于滑压运行模式时
 
 \subsubsection{膨胀释能过程}
-与压缩储能过程类似，我们以膨胀机的额定质量流率(2.4435kg/s)进行膨胀释能，在给定的膨胀侧常压运行模式下，储气库的热力学动态特性如图
-\ref{fig:Sim-Disc-ASU-P-T-M}所示，总释能时间为0.53h。由于采用了常压运行模式，第1级透平的进气压力为储气库的最低运行压力，即4MPa，随着释能过程的进行，储气库中空气的压力逐渐从压缩储能末端时的储气压力10MPa 逐渐减小，当储气压力减至储气库的最低运行压力时，释能过程结束。储气库内空气质量线性减少，而压力与温度并不呈线性趋势，其原因在于储气压力不仅与质量流率有关，还与储气库内空气的温度有关，而空气温度与时变的储气库空气质量有关。
+与压缩储能过程类似，我们以膨胀机的额定质量流率(2.4435kg/s)进行膨胀释能，在给定的膨胀侧定压运行模式下，储气库的热力学动态特性如图
+\ref{fig:Sim-Disc-ASU-P-T-M}所示，总释能时间为0.53h。由于采用了定压运行模式，第1级透平的进气压力为储气库的最低运行压力，即4MPa，随着释能过程的进行，储气库中空气的压力逐渐从压缩储能末端时的储气压力10MPa 逐渐减小，当储气压力减至储气库的最低运行压力时，释能过程结束。储气库内空气质量线性减少，而压力与温度并不呈线性趋势，其原因在于储气压力不仅与质量流率有关，还与储气库内空气的温度有关，而空气温度与时变的储气库空气质量有关。
 
 \begin{figure}[H] % use float package if you want it here
   \centering
@@ -1116,7 +1116,7 @@ Lx_{TV}^e = Ex_{e,TV}^{in} - Ex_{e,TV}^{out} \label{equ:throttle-valve-turb-exer
 \end{figure}
 
 \subsubsection{膨胀释能过程}
-在膨胀侧的常压释能过程中，按部分负载模式质量流率放气的总时间为0.78h，图\ref{fig:Sim-Disc-ASU-Pressure-Part-load}给出了整个释能过程中各级透平进气压力及储气库内空气压力的变化曲线。尽管储气库内空气压力一直在降低，但由于储气库出口侧节流阀的“稳压”作用，各级透平的进气压力均可维持核定，从而改善了由于压力偏离设计值造成的透平的部分负载运行特性。
+在膨胀侧的定压释能过程中，按部分负载模式质量流率放气的总时间为0.78h，图\ref{fig:Sim-Disc-ASU-Pressure-Part-load}给出了整个释能过程中各级透平进气压力及储气库内空气压力的变化曲线。尽管储气库内空气压力一直在降低，但由于储气库出口侧节流阀的“稳压”作用，各级透平的进气压力均可维持核定，从而改善了由于压力偏离设计值造成的透平的部分负载运行特性。
 
 %\subsection{适用性讨论}
 \begin{figure}[H] % use float package if you want it here

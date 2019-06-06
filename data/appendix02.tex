@@ -16,18 +16,18 @@
 \label{eq:convex-CHP-PQ}
 p_{i,t}^c = \sum\limits_{k = 1}^M {\alpha _{i,t}^kx_i^k,q_{i,t}^c = \sum\limits_{k = 1}^M {\alpha _{i,t}^ky_i^k} ,C_{i,t}^c = \sum\limits_{k = 1}^M {\alpha _{i,t}^kc_i^k} }, \forall i,t
 \end{equation}
-其中，$(x_i^k,y_i^k,c_i^k)$ 为极点$k$对应的电功率、热功率及运行成本，$\alpha _{i,t}^k$ 为各极点线性组合系数，满足$\sum\limits_{k{\rm{ = }}1}^M {\alpha _{i,t}^k}  = I_{i,t}^{c(1)}$。对于不满足凸性的CHP热电可行域，可将区域划分为几个凸区域，进而针对每个区域采用类型凸性的方法(\ref{eq:convex-CHP-PQ})进行建模。如图\ref{fig:Append-CHP-Convexity}(b)所示，假定非凸热电可行域可分为两个凸区域，则CHP的供热与供电功率满足，
+其中，$(x_i^k,y_i^k,c_i^k)$ 为极点$k$对应的电功率、热功率及运行成本，$\alpha _{i,t}^k$ 为各极点线性组合系数，满足$\sum\limits_{k{\rm{ = }}1}^M {\alpha _{i,t}^k}  = I_{i,t}^{c(1)}$。对于不满足凸性的CHP热电可行域，可将区域划分为几个凸区域，进而针对每个区域采用类型凸性的方法(\ref{eq:convex-CHP-PQ})进行建模。如图\ref{fig:Append-CHP-Convexity}(b)所示，假定非凸热电可行域可分为两个凸区域，则CHP的供热与供电功率满足：
 \begin{equation}
 \label{eq:non-convex-CHP-PQ}
 p_{i,t}^c = \sum\limits_{k = 1}^{{M_1}} {\alpha _{i,t}^kx_{i1}^k} {\rm{ + }}\sum\limits_{k = 1}^{{M_2}} {\beta _{i,t}^kx_{i2}^k} ,q_{i,t}^c = \sum\limits_{k = 1}^{{M_1}} {\alpha _{i,t}^ky_{i,1}^k} {\rm{ + }}\sum\limits_{k = 1}^{{M_2}} {\beta _{i,t}^ky_{i2}^k}, \forall i,t
 \end{equation}
-其中，$(\alpha _{i,t}^k,\beta _{i,t}^k)$ 为各个凸子区域的系数，并满足，
+其中，$(\alpha _{i,t}^k,\beta _{i,t}^k)$ 为各个凸子区域的系数，并满足：
 \begin{equation}
 \sum\limits_{k = 1}^{{M_1}} {\alpha _{i,t}^k}  = I_{_{i,t}}^{c(1)},\sum\limits_{k = 1}^{{M_2}} {\beta _{i,t}^k}  = I_{i,t}^{c(2)},\;\forall i,t
 \end{equation}
 其中，$(I_{_{1,t}}^{c(1)},I_{_{2,t}}^{c(2)})$ 为表征机组运行状态的0-1量； $I_{i,t}^{c(1)} = 1$ 表示CHP运行于凸区域1，$I_{i,t}^{c(2)} = 1$ 表示CHP机组运行于凸区域2。
 
-令$I_{i,t}^c$为表征CHP机组运行状态的布尔量，其满足
+令$I_{i,t}^c$为表征CHP机组运行状态的布尔量，其满足：
 \begin{equation}
 0 \le I_{i,t}^c = I_{i,t}^{c(1)} + I_{i,t}^{c(2)} \le 1, \; \forall i, t
 \end{equation}
@@ -37,7 +37,7 @@ CHP的燃料成本由供热功率以及电功率共同决定，其值可由热�
 C_{i,t}^c = \sum\limits_{k = 1}^{{M_i}} {\alpha _{_{i,t}}^kc_{i,1}^k}  + \sum\limits_{k = 1}^{{M_i}} {\beta _{_{i,t}}^kc_{i,2}^k}, \; \forall i,t
 \end{equation}
 
-CHP机组的启动成本约束可描述为，
+CHP机组的启动成本约束可描述为
 \begin{equation}
 S_{i,t}^c \ge {\lambda _i}(I_{i,t}^c - I_{i,t - 1}^c), \; \forall i,t
 \end{equation}
@@ -45,14 +45,14 @@ S_{i,t}^c \ge {\lambda _i}(I_{i,t}^c - I_{i,t - 1}^c), \; \forall i,t
 
 %\section{CHP灵活性约束}
 %\subsection{CHP爬坡约束}
-CHP机组的爬坡约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15, IES-Model-CXY-18}，
+CHP机组的爬坡约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15, IES-Model-CXY-18}
 \begin{subequations}
 \begin{gather}
 p_{i,t}^c - p_{i,t - 1}^c \le R_i^uI_{i,t - 1}^c + S_i^u(I_{i,t}^c - I_{i,t - 1}^c) + \bar P_i^c(1 - I_{i,t}^c), \forall i,t \\
 p_{i,t}^c - p_{i,t - 1}^c \ge  - (R_i^dI_{i,t}^c + S_i^d(I_{i,t - 1}^c - I_{i,t}^c)), \forall i,t
 \end{gather}
 \end{subequations}
-其中，$R_i^d$ 与 $R_i^u$ 分别为向上爬坡与向下爬坡限制；$S_i^d$ 与 $S_i^u$ 分别为启动或停机爬坡限制，$\bar P_i^c$  为CHP机组$i$的最大电功率输出，满足
+其中，$R_i^d$ 与 $R_i^u$ 分别为向上爬坡与向下爬坡限制；$S_i^d$ 与 $S_i^u$ 分别为启动或停机爬坡限制，$\bar P_i^c$  为CHP机组$i$的最大电功率输出，满足：
 \cite{IES-Model-CXY-18}
 \begin{subequations}
 \begin{gather}
@@ -62,7 +62,7 @@ P_{i,t}^c \le \bar P_i^cI_{i,t + 1}^c + S_i^d(I_{i,t}^c - I_{i,t + 1}^c), \foral
 \end{subequations}
 %\subsection{CHP运行时间约束}
 
-CHP机组$i$的最小运行时间约束可建模为~\cite{UC-Model-06,IES-Model-CXY-18},
+CHP机组$i$的最小运行时间约束可建模为~\cite{UC-Model-06,IES-Model-CXY-18}
 \begin{subequations}
 \begin{gather}
 \sum\limits_{t = 1}^{{G_i}} {(1 - I_{i,t}^c) = 0}, \forall i,t  \\
@@ -70,7 +70,7 @@ CHP机组$i$的最小运行时间约束可建模为~\cite{UC-Model-06,IES-Model-
 \sum\limits_{v = t}^T {(I_{i,v}^c - (I_{i,t}^c - I_{i,t-1}^c)} ) \ge 0, \;\;\;t = T - T_i^{c,U} + 2,\cdots,T, \forall i
 \end{gather}
 \end{subequations}
-相应地，最小停机时间约束可建模为~\cite{UC-Model-06,IES-Model-CXY-18},
+相应地，最小停机时间约束可建模为~\cite{UC-Model-06,IES-Model-CXY-18}
 \begin{subequations}
 \begin{gather}
 \sum\limits_{t = 1}^{{G_i}} {I_{i,t}^c = 0}, \forall i,t \\
@@ -81,7 +81,7 @@ CHP机组$i$的最小运行时间约束可建模为~\cite{UC-Model-06,IES-Model-
 其中，$T_i^{c,U}$ 与 $T_i^{c,D}$ 分别表示CHP机组$i$的最小运行时间与最小停机时间; ${G_i^c}$ 为与CHP 机组$i$的初始运行状态相关的常数，若机组$i$在初始时刻处于启动状态，则${G_i^c}$ 为机组可以停机需要最小的时间间隔；若机组$i$在初始时刻处于停机状态，则${G_i}$  为机组可以启动需要的最小时间间隔。
 
 \section{火电机组灵活性约束}
-火电机组$i$的爬坡约束满足\cite{UC-Model-06, CHP-Model-CXY-15, IES-Model-CXY-18}，
+火电机组$i$的爬坡约束满足\cite{UC-Model-06, CHP-Model-CXY-15, IES-Model-CXY-18}：
 \begin{subequations}
 \begin{gather}
 p_{i,t}^e - p_{i,t - 1}^e \le R_i^uI_{i,t - 1}^c + S_i^u(I_{i,t}^e - I_{i,t - 1}^e) + {{\bar {\rm A}}_i}(1 - I_{i,t}^e), \forall i,t \\
@@ -91,7 +91,7 @@ p_{i,t}^e \le {{\bar {\rm A}}_i}I_{i,t + 1}^e + S_i^d(I_{i,t}^e - I_{i,t + 1}^e)
 \end{subequations}
 其中，$R_i^d$ 与 $R_i^u$ 分别为机组$i$的向上与向下爬坡限制，其它变量说明可参见正文第~\ref{sec:ca-wt-power-energy-pene}节。
 
-火电机组的最小运行时间约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15}，
+火电机组的最小运行时间约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15}
 \begin{subequations}
 \begin{gather}
 \sum\limits_{t = 1}^{{G_i}} {(1 - I_{i,t}^e) = 0}, \forall i,t \\
@@ -99,7 +99,7 @@ p_{i,t}^e \le {{\bar {\rm A}}_i}I_{i,t + 1}^e + S_i^d(I_{i,t}^e - I_{i,t + 1}^e)
 \sum\limits_{v = t}^T {(I_{i,v}^e - (I_{i,t}^e - I_{i,t - 1}^e)} ) \ge 0, \;\;t = T - T_i^{e,U} + 2,\cdots,T, \forall i
 \end{gather}
 \end{subequations}
-相应地，最小停机时间约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15}，
+相应地，最小停机时间约束可建模为\cite{UC-Model-06, CHP-Model-CXY-15}
 \begin{subequations}
 \begin{gather}
 \sum\limits_{t = 1}^{{G_i}} {I_{i,t}^e = 0}, \forall i,t \\

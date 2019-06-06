@@ -124,7 +124,7 @@
 
 \subsection{能量模型}
 \label{sec:ca-wt-model-energy}
-基于\ref{sec:ca-wt-design}节中的灵活风机工作原理，抽象出图\ref{fig:CAWT-Power-Flow} 所示的灵活风机内部功率分配图。如此，灵活风机叶片从风能中可捕获的机械功率$P_t^{BL}$及叶片摩擦损失功率$ {f^{loss}}$分别满足
+基于\ref{sec:ca-wt-design}节中的灵活风机工作原理，抽象出图\ref{fig:CAWT-Power-Flow} 所示的灵活风机内部功率分配图。如此，灵活风机叶片从风能中可捕获的机械功率$P_t^{BL}$及叶片摩擦损失功率$ {f^{loss}}$分别满足:
 \begin{subequations}
 \label{eq:CA-WT-Wind-Blade-Energy}
 \begin{gather}
@@ -141,12 +141,12 @@ P_t^{BL} = \frac{1}{{2 \times 1000}}\rho Av_t^3{C_p} - {f^{loss}},\forall t\\
   \label{fig:CAWT-Power-Flow}
 \end{figure}
 
-由于在切入风速到机械风速间的MPPT控制、机械风速到切出风速间的桨距角控制以及其它运行限制，灵活风机实际捕获的机械风能满足，
+由于在切入风速到机械风速间的MPPT控制、机械风速到切出风速间的桨距角控制以及其它运行限制，灵活风机实际捕获的机械风能满足:
 \begin{gather}
 \label{eq:CA-WT-Wind-Blade-Limit-1}
 0 \le P_t^B \le P_t^{BL},\; \forall t
 \end{gather}
-其中，$P_t^B$为时段$t$风机叶片捕获的机械风功率。$P_t^B$中一部分功率（$P_t^{Vc}$）用以驱动内嵌的AA-CAES运行于压缩储能模式；另一部分功率（$P_t^B - P_t^{Vc}$）用以直接驱动风机内部的发电机，以实现传统风机的功能，并满足，
+其中，$P_t^B$为时段$t$风机叶片捕获的机械风功率。$P_t^B$中一部分功率（$P_t^{Vc}$）用以驱动内嵌的AA-CAES运行于压缩储能模式；另一部分功率（$P_t^B - P_t^{Vc}$）用以直接驱动风机内部的发电机，以实现传统风机的功能，并满足：
 \begin{gather}
 \label{eq:CA-WT-Wind-Blade-Limit-2}
 P_t^B - P_t^{Vc} \ge 0,\;\forall t
@@ -159,14 +159,14 @@ P_t^{CA} = P_t^B + P_t^{Vd} - P_t^{Vc},\;\forall t
 \end{gather}
 
 
-第\ref{sec:ca-wt-design}节中宽工况控制策略的实施，以及压缩/膨胀机的单级结构形式（不同于第3章至第4章中的多级结构），灵活风机内嵌的AA-CAES的机械储能水平$E_t^{str}$ 可直接借鉴经典的电池SOC建模理论\footnote{事实上，此处也可采用第3章中的双SOC建模理论，本章不予讨论。}，即满足
+第\ref{sec:ca-wt-design}节中宽工况控制策略的实施，以及压缩/膨胀机的单级结构形式（不同于第3章至第4章中的多级结构），灵活风机内嵌的AA-CAES的机械储能水平$E_t^{str}$ 可直接借鉴经典的电池SOC建模理论\footnote{事实上，此处也可采用第3章中的双SOC建模理论，本章不予讨论。}，即满足：
 \begin{gather}
 \label{eq:CA-WT-SOC}
 E_{t + 1}^{str} = ({1 - {\gamma ^{str}}})E_t^{str} + {\eta ^{Vc}}P_t^{Vc}\Delta t - P_t^{Vd}\Delta t/{\eta ^{Vd}},\forall t
 \end{gather}
 其中，${\eta ^{Vc}}$与${\eta ^{Vd}}$分别内嵌AA-CAES的压缩储能效率与膨胀释能效率；${\gamma ^{str}}$ 为储气库与储热罐自身综合损耗效率，基于第2章中不考虑储气库漏气特性的假设，其值可取为0；$\Delta t$ 为运行时段。
 
-此外，灵活风机及其内嵌的AA-CAES需满足如下的功率与储能水平限制,
+此外，灵活风机及其内嵌的AA-CAES需满足如下的功率与储能水平限制：
 \begin{subequations}
 \label{eq:CA-WT-SOC-Limit}
 \begin{gather}
@@ -184,7 +184,7 @@ E_{\min }^{str} \le E_t^{str} \le E_{\max }^{str},\forall t \\
 \label{sec:ca-wt-model-reserve}
 与传统风机不同，由于内嵌了具有优良常规灵活性（见图\ref{fig:CAES-AS-Overview}）及接口灵活性（见图\ref{fig:AA-CAES-Stru-Felixibity}）的AA-CAES，灵活风机具备了良好的（双）备用特性。与第\ref{sec:dual-SOC}节中建立的AA-CAES储能电站的双SOC备用模型一致，我们仅考虑正负荷备用。如此，灵活风机的容量备用能力主要源于两个方面，一是通过主动弃风导致的叶片未利用风能，即$P_t^{sr,1}$，二是由内嵌的~AA-CAES~在膨胀释能模式下提供的备用容量，即$P_t^{sr,2}$。
 
-由图\ref{fig:CAWT-Power-Flow}可知，灵活风机的双备用容量满足如下的约束条件，
+由图\ref{fig:CAWT-Power-Flow}可知，灵活风机的双备用容量满足如下的约束条件：
 \begin{subequations}
 \label{eq:CA-WT-Dual-Reserve}
 \begin{gather}
@@ -280,7 +280,7 @@ WT、CA-WT以及WT-CAES 三个场景下风机自治运行一周的结果如表~\
 \label{eq:CA-WT-Gen-Eva-Model}
 \begin{gather}
 \max \;\frac{1}{{8760 \times P_{rated}^{WT}}}\sum\limits_{t = 1}^{8760} {P_t^{CA}\Delta t} \\
-s.t.\;\;\;\mbox{风机能量模型}(\ref{eq:CA-WT-Wind-Blade-Energy})-(\ref{eq:CA-WT-SOC-Limit})
+s.t.\;\;\;\mbox{风机能量模型}\eqref{eq:CA-WT-Wind-Blade-Energy}-\eqref{eq:CA-WT-SOC-Limit}
 \end{gather}
 \end{subequations}
 
@@ -345,14 +345,14 @@ s.t.\;\;\;\mbox{风机能量模型}(\ref{eq:CA-WT-Wind-Blade-Energy})-(\ref{eq:C
 
 \subsection{含风电的电力系统最优调度模型}
 \label{sec:ca-wt-power-energy-pene}
-当前，我国“三北”等风电装机容量较大地区所在电力系统中的主力机组主要包括火电机组、热电联产机组（CHP）及风电机组三类。本节调度模型旨在最小化该类电力系统的运行成本，即系统的总燃料成本及启动成本，
+当前，我国“三北”等风电装机容量较大地区所在电力系统中的主力机组主要包括火电机组、热电联产机组（CHP）及风电机组三类。本节调度模型旨在最小化该类电力系统的运行成本（即系统的总燃料成本及启动成本）
 \begin{equation}
 \label{eq:obj-MengXi-CA-WT}
 \min f = \sum\limits_{t = 1}^{{N_T}} {\sum\limits_{i = 1}^{{N_p}} {C_{i,t}^p} }  + \sum\limits_{t = 1}^{{N_T}} {\sum\limits_{i = 1}^{{N_c}} {C_{i,t}^c} }  + \sum\limits_{t = 1}^{{N_T} - 1} {\sum\limits_{i = 1}^{{N_c}} {S_{i,t}^c} }  + \sum\limits_{t = 1}^{{N_T} - 1} {\sum\limits_{i = 1}^{{N_p}} {S_{i,t}^p} }
 \end{equation}
-其中，${N_T}$ 为总调度时段；${N_p}$与${N_c}$ 分别为电力系统中火电机组及CHP机组的个数；$C_{i,t}^c$ 与 $S_{i,t}^c$ 分别为CHP机组的燃料成本与启动成本；$C_{i,t}^p$ 与$S_{i,t}^p$分别为火电机组的燃料成本与启动成本。事实上，以实现风电的优先调度为目标的电力系统调度模型会在式(\ref{eq:obj-MengXi-CA-WT}) 中加入弃风惩罚项，此处为便于松弛灵活风机内嵌的AA-CAES不能同时充放的运行约束，在目标函数中没有考虑弃风惩罚。
+其中，${N_T}$ 为总调度时段；${N_p}$与${N_c}$ 分别为电力系统中火电机组及CHP机组的个数；$C_{i,t}^c$ 与 $S_{i,t}^c$ 分别为CHP机组的燃料成本与启动成本；$C_{i,t}^p$ 与$S_{i,t}^p$分别为火电机组的燃料成本与启动成本。事实上，以实现风电的优先调度为目标的电力系统调度模型会在式(\ref{eq:obj-MengXi-CA-WT}) 中加入弃风惩罚项(如文献\inlinecite{IES-Model-CXY-18})，此处为便于松弛灵活风机内嵌的AA-CAES不能同时充放的运行约束，在目标函数中没有考虑弃风惩罚。
 
-电力系统调度模型的约束条件主要包括，系统电功率平衡、备用需求、区域热功率平衡，灵活风机或传统风机运行约束，以及CHP与火电机组的灵活性约束（如爬坡、最小运行时间等）等。一般而言，系统电功率平衡及备用需求约束可建模为，
+电力系统调度模型的约束条件主要包括，系统电功率平衡、备用需求、区域热功率平衡，灵活风机或传统风机运行约束，以及CHP与火电机组的灵活性约束（如爬坡、最小运行时间等）等。一般而言，系统电功率平衡及备用需求约束可建模为\cite{IES-Model-CXY-18}
 \begin{subequations}
 \begin{gather}
 \sum\limits_{i = 1}^{{N_p}} {p_{i,t}^e}  + \sum\limits_{i = 1}^{{N_c}} {p_{i,t}^c}  + \sum\limits_{i = 1}^{{N_w}} {p_{i,t}^w}  + \sum\limits_{i = 1}^{{N_b}} {p_{i,t}^b}  = {P_t}, \;\forall t\\
@@ -363,7 +363,7 @@ s.t.\;\;\;\mbox{风机能量模型}(\ref{eq:CA-WT-Wind-Blade-Energy})-(\ref{eq:C
 
 %$I_{i,t}^e$表征火电机组$i$ 在时段$t$ 的启动状态；$I_{i,t}^{c(1)}$ ，$I_{i,t}^{c(2)}$ ，$I_{i,t}^{c(k)}$表示CHP机组$i$在时段$t$的运行状态变量，当当CHP 机组的运行区域（热电可行域）非凸时$k > 1$。
 
-区域内的热平衡由相应区域内的CHP承担，即，
+区域内的热平衡由相应区域内的CHP承担，即
 \begin{equation}
 \sum\limits_{i = 1}^{{N_c}} {a_{_{i,j}}^cq_{i,t}^c}  = {Q_{j,t}}
 \end{equation}
@@ -514,12 +514,12 @@ s.t.\;\;\;\mbox{风机能量模型}(\ref{eq:CA-WT-Wind-Blade-Energy})-(\ref{eq:C
 由于内嵌的AA-CAES机械组件提供的机械风能的缓冲作用，灵活风机具备了类似于经典储能（电站）的市场套利或操纵行为。传统风机由于风电功率与风速之间的瞬时强耦合关系，导致难以操纵市场参与行为，即难以实现在风电上网电价较低时段减少风电发电量，在风电上网电价较高时段增加风电发电量，从而并网节点的电价出现负电价（见表
 \ref{tab:neg-price-US}）时若相应的发电补贴难以抵消负电价带来的收益折扣时将不得已弃风。相反，灵活风机由于具备了类似储能的市场操纵潜力，可以灵活根据（预测）风电上网电价调整风电出力，进而可以获取更高的经济性。
 
-考虑典型区域电力市场，构建内嵌AA-CAES的灵活风机的市场竞标模型为，
+考虑典型区域电力市场，构建内嵌AA-CAES的灵活风机的市场竞标模型为
 \begin{subequations}
 \label{eq:CA-WT-Self-Schedule}
 \begin{gather}
 \max \;\sum\limits_{t = 1}^{8760} {\lambda _t^EP_t^{CA}\Delta t} \label{eq:CA-WT-Self-Schedule-obj}\\
-s.t.\;\;\;(\ref{eq:CA-WT-Wind-Blade-Energy}) - (\ref{eq:CA-WT-SOC-Limit})
+s.t.\;\;\;\eqref{eq:CA-WT-Wind-Blade-Energy} - \eqref{eq:CA-WT-SOC-Limit}
 \end{gather}
 \end{subequations}
 其中，$\lambda_t^E$为时刻$t$的风电上网电价，即区域电力市场中发电机节点的上网电价。
